@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="format-detection" content="telephone=no,email=no"/>
+    <meta name="apple-mobile-web-app-title" content="足彩"/>
+    <title></title>
+    <link rel="stylesheet" href="../public/styles/common.css">
+    <script type="text/javascript" src="../public/scripts/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="../public/scripts/bootstrap.min.js"></script>
+</head>
+<body>
+    <!-- 按钮触发模态框 -->
+    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#login">登录</button>
+    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#logup">注册</button>
+    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#reset">重置密码</button>
+    <!-- 登录模态框（Modal） -->
+    <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog login-box">
+            <div class="modal-content login-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title center">LOGIN</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="text" class="form-control" placeholder="Tel Number">
+                    <input type="password" class="form-control" placeholder="Password">
+                    <p><span class="agress agreed"></span>Keep me Logged in</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn login-submit">LOGIN</button>
+                    <a href="javascript:;" class="link">Lost Login？</a>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+    <!-- 注册模态框（Modal） -->
+    <div class="modal fade" id="logup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog login-box">
+            <div class="modal-content login-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title center">REGISTER</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="text" class="form-control" placeholder="Tel Number">
+                    <label>
+                        <input type="password" class="form-control width60" placeholder="Verification Code">
+                        <a href="javascript:;" class="">SEND</a>
+                    </label>
+
+                    <p><span class="agress agreed"></span>Keep me Logged in</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn login-submit">LOGIN</button>
+                    <a href="javascript:;" class="link">Lost Login？</a>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+    <!-- 重置密码模态框（Modal） -->
+    <div class="modal fade" id="reset" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog login-box">
+            <div class="modal-content login-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title center">Set the Password</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="text" class="form-control" placeholder="Set My Password">
+                    <input type="password" class="form-control" placeholder="Repeat My Password">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn login-submit">CONFIRM</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+</body>
+</html>
