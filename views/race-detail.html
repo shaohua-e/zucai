@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="format-detection" content="telephone=no,email=no"/>
+    <meta name="apple-mobile-web-app-title" content="足彩"/>
+    <title></title>
+    <!--font-awsome-css-->
+    <link rel="stylesheet" href="../public/styles/font-awesome.min.css">
+    <!--bootstrap-->
+    <link rel="stylesheet" href="../public/styles/bootstrap.min.css">
+    <!--custom css-->
+    <link rel="stylesheet" href="../public/styles/jquery-ui.css" />
+    <!--<link rel="stylesheet" type="text/css" href="../public/styles/index.css" />-->
+    <link rel="stylesheet" href="../public/styles/common.css">
+
+
+</head>
+<body>
+    <div class="masthead pdng-stn1">
+        <!-- 内容开始 -->
+        <div class="phone-box wrap push">
+            <div class="banner">
+            <!-- recommend -->
+            <div class="recommend">
+                <table class="remd-list">
+                    <tr>
+                        <th width="5">&nbsp;</th>
+                        <th width="30%" class="left">Italy Serie B</th>
+                        <th width="15%">Result</th>
+                        <th width="17%">1</th>
+                        <th width="16%">X</th>
+                        <th width="17%">2</th>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td class="left d">
+                            <span class="ds">Foggia</span>
+                            <span class="ds">Empoli</span>
+                            <em>20:00</em> <a href="">5</a> <i class="fa fa-chevron-right"></i>
+                        </td>
+                        <td class="d orange">
+                            <span class="ds">0</span>
+                            <span class="ds">0</span>
+                        </td>
+                        <td class="s orange bg" data-Bets="">1.32</td>
+                        <td class="s orange bg" data-Bets="">2.3</td>
+                        <td class="s orange bg" data-Bets="">0.6</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td class="left d">
+                            <span class="ds">Foggia</span>
+                            <span class="ds">Empoli</span>
+                            <em>20:00</em> <a href="">5</a> <i class="fa fa-chevron-right"></i>
+                        </td>
+                        <td class="d orange">
+                            <span class="ds">0</span>
+                            <span class="ds">0</span>
+                        </td>
+                        <td class="s orange bg" data-Bets="">1.32</td>
+                        <td class="s orange bg" data-Bets="">2.3</td>
+                        <td class="s orange bg" data-Bets="">0.6</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- 下注模态框（Modal） -->
+    <div class="modal fade" id="bets" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog bet-slip">
+            <div class="modal-content login-content">
+                <div class="modal-header bets-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Bet Slip</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="bet-left">
+                        <h5>SV Dellach/Gail or Draw</h5>
+                        <p>Double Chance <br> SC Landskron v SV Dellach/Gail</p>
+                    </div>
+                    <div class="bet-right">
+                        <input type="text width30" class="form-control" placeholder="Stake">
+                        <p>Total Possible Win <br><strong>0.00</strong></p>
+                    </div>
+                    <ul class="bets-amount">
+                        <li>50</li>
+                        <li>100</li>
+                        <li>200</li>
+                        <li>500</li>
+                        <li>1000</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn bets-btn bets-submit">ACCEPT</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+    <!-- 下注成功 -->
+    <div class="modal fade" id="bets-Success" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog bet-slip">
+            <div class="modal-content login-content">
+                <div class="modal-header betsSuc-header">
+                    <h4 class="modal-title"><img src="../public/images/bets-suc.png" class="bet-sucIcon"/>Congratulations</h4>
+                </div>
+                <div class="modal-body betSuc-body">
+                    <h5>SV Dellach/Gail or Draw</h5>
+                    <p>Double Chance <br> SC Landskron v SV Dellach/Gail</p>
+                    <p class="s-p">Betting <strong>500.00</strong>Total Possible Win <strong class="orange">750.00</strong></p>
+                </div>
+                <div class="modal-footer betSuc-footer">
+                    <button type="button" data-dismiss="modal" class="back-btn inline-btn">Back</button>
+                    <button type="button" class="bets-btn inline-btn">Share</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+    <!-- 下注失败 -->
+    <div class="modal fade" id="bets-fail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog bet-slip">
+            <div class="modal-content login-content">
+                <div class="modal-header betsSuc-header">
+                    <h4 class="modal-title"><img src="../public/images/bets-suc.png" class="bet-sucIcon"/>Oops！</h4>
+                </div>
+                <div class="modal-body betSuc-body">
+                    <h5>SV Dellach/Gail or Draw</h5>
+                    <p>Double Chance <br> SC Landskron v SV Dellach/Gail</p>
+                    <p class="s-p">Betting <strong>500.00</strong>Total Possible Win <strong class="orange">750.00</strong></p>
+                </div>
+                <div class="modal-footer betSuc-footer">
+                    <button type="button" data-dismiss="modal" class="back-btn inline-btn">Back</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+    <script type="text/javascript" src="../public/scripts/jquery-2.1.4.min.js"></script>
+    <!--<script type="text/javascript" src="../public/scripts/bootstrap.min.js"></script>-->
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            //下注框显示
+            $('.recommend').on('click','td[data-Bets]',function(){
+                $('#bets').modal('show');
+            })
+            //下注提交
+            $('.bets-submit').on('click', function(){
+                $('#bets').modal('hide');
+                $('#bets-fail').modal('show');
+            })
+        });
+
+    </script>
+</body>
+</html>
