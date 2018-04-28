@@ -1,14 +1,22 @@
-body{
+html{
     font-family: "SF Pro Text","Myriad Set Pro","SF Pro Icons","Helvetica Neue","Helvetica","Arial",sans-serif!important;
     font-weight: 400!important;
-}
-body,html{
     background: -webkit-linear-gradient(#4663a9, #35316a); /* Safari 5.1 - 6.0 */
     background: -o-linear-gradient(#4663a9, #35316a); /* Opera 11.1 - 12.0 */
     background: -moz-linear-gradient(#4663a9, #35316a); /* Firefox 3.6 - 15 */
     background: linear-gradient(#4663a9, #35316a); /* 标准的语法 */
-
+    background-repeat: no-repeat;
 }
+body{
+    background-color: transparent;
+    background-image: url('../images/body-bg.png');
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+}
+/*html{*/
+    /*background-color: #35316a;*/
+ /*}*/
 em{font-style: normal;}
 /* 登录注册部分开始 */
 .center{
@@ -17,13 +25,43 @@ em{font-style: normal;}
 .left{
     text-align: left!important;
 }
+.right{
+    text-align: right!important;
+}
+.pull-left{
+    float: left!important;
+}
 .width70{
   display: inline-block;
   width: 70%;
 }
+.width60{
+    width: 60%!important;
+}
 .width30{
     display: inline-block;
     width: 30%;
+}
+.mb50{
+    margin-bottom: 50px;
+}
+.pd15{
+    padding-bottom: 15px;
+}
+.mt0{
+    margin-top: 0!important;
+}
+.pt30{
+    padding-top: 30px!important;
+}
+.orange{
+    color: #FFD80D;
+}
+.red{
+    color: rgba(255,115,0,0.84);
+}
+.white{
+    color: #fff;
 }
 .mark{
   width: 100%;
@@ -47,7 +85,7 @@ input:-moz-placeholder{    /* Mozilla Firefox 4 to 18 */
 input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
   color:rgba(255,255,255,.6);
 }
-.login-box{
+.modal-top{
     top: 15%;
 }
 .login-box label{
@@ -81,17 +119,18 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
     font-size: 30px;
     font-weight: normal;
   }
-.login-box .form-control{
+.login-box .form-control,.transfer-search .form-control{
     line-height: 45px;
     height: 45px;
     background-color: #49528C;
     border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 8px;
+    border-radius: 8px!important;
     color: #fff;
     margin: 18px 0;
     font-weight: normal;
+    text-align: left;
   }
-.login-box .login-submit{
+.login-box .login-btn{
     display: block;
     width: 100%;
     margin: 0 auto;
@@ -102,6 +141,11 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
     text-align: center;
     border-radius: 8px;
   }
+.login-box .fail-btn{
+    width: 70%;
+    height: 40px;
+    margin: 20px auto 15px;
+}
 .login-box  .agress{
     display: inline-block;
     float: left;
@@ -132,6 +176,15 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
     line-height: 45px;
     text-align: center;
 }
+.login-box .login-fail{
+    text-align: center;
+    font-size: 12px;
+}
+.login-box .login-fail h5{
+    font-size: 17px;
+    padding: 35px 0 25px;
+    font-weight: normal;
+}
 /* 登录注册部分结束 */
 /*下注框 开始*/
 .bet-slip .login-content {
@@ -153,6 +206,7 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
     opacity: 1;
     font-size: 30px;
     font-weight: normal;
+    margin-top: -6px;
 }
 .bet-slip .modal-body{
     overflow: hidden;
@@ -209,7 +263,7 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
     padding: 30px 15px;
     border-top: 1px solid rgba(255,255,255,0.2);
 }
-.bet-slip .bets-btn{
+.bets-btn{
     display: block;
     width: 70%;
     margin: 0 auto;
@@ -222,7 +276,7 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
     font-weight: 600;
     border: none;
 }
-.bet-slip .back-btn{
+.back-btn{
     height: 40px;
     border: 1px solid #E3C551;
     color: #E3C551;
@@ -234,17 +288,18 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
 }
 .bet-slip .inline-btn{
     display: inline-block;
-    width: 47%;
+    width: 45%;
+    margin: 0 5px;
 }
 .bets-amount {
     overflow: hidden;
     clear: both;
-    padding-top: 12px;
+    padding: 12px 0 0;
 }
 .bets-amount li{
     display: inline-block;
     float: left;
-    width: 20%;
+    width: 25%;
     line-height: 37px;
     text-align: center;
     color: #FFD844;
@@ -255,7 +310,11 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
     background: linear-gradient(#54619A, #333E7E); /* 标准的语法 */
     box-shadow: 0 1px 3px 0 rgba(47,56,121,0.50), inset 1px 0 1px 0 rgba(255,255,255,0.05), inset 0 1px 1px 0 rgba(255,255,255,0.23), inset 0 0px 3px 0 rgba(40,49,127,0.31);
 }
-.bets-amount li:hover{
+.bets-amount li.dis{
+    background: #bbb;
+    color: #fff;
+}
+.bets-amount li.able:hover{
     color: #3A3F7C;
     background-image: linear-gradient(-1deg, #dcc97c 0%, #dd9b29 100%);
     box-shadow: inset 0 1px 1px 0 rgba(255,255,255,0.50), inset 0 -2px 4px 0 rgba(40,49,127,0.57);
@@ -290,24 +349,48 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
     padding: 30px;
 }
 /*下注框 结束*/
+.menu-link{
+    display: inline-block;
+    margin-top: 3px;
+}
+.user-icon{
+    display: inline-block;
+    background: url('../images/user-icon.png') no-repeat center center;
+    background-size: 100% auto;
+    width: 24px;
+    height: 24px;
+    position: relative;
+}
+/*消息提醒　*/
+.news-tip{
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 5px;
+    background-color: red;
+}
 /* 首页 开始 */
 .menu-notify{
     background: #383874;
-    box-shadow: 0 4px 7px 0 rgba(0,0,0,0.30);
+    box-shadow: 0 1px 5px 0 rgba(0,0,0,0.30);
+    position: relative;
+    z-index: 11;
 }
-.logo{
-    text-align: left;
-}
-.logo h1 a{
-    font-size: 18px!important;
-    float: left;
-    margin-top: 4px;
+/*.logo{*/
+    /*text-align: left;*/
+/*}*/
+.logo h1 .link{
+    font-size: 16px!important;
+    margin-top: 9px;
     font-weight: normal!important;
-
+    color: #fff;
 }
 .logo img{
     width: 20px;
-    margin-bottom: 2px;
+    margin-bottom: 5px;
 }
 .panel{
     background-color:  rgba(31,42,112,.88);
@@ -324,6 +407,8 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
     display: inline-block;
     color: #fff;
     font-weight: normal;
+    width: 100%;
+    height: 100%;
 }
 .menu-ul li .fa{
     float: right;
@@ -346,6 +431,10 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
     width: 100%;
     min-height: 145px;
 }
+.swiper-slide,.swiper-slide a img{
+    width: 100%;
+    height: 100%;
+}
 .remd-list{
     width: 100%;
     margin-bottom: 10px;
@@ -358,11 +447,13 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
     color: rgba(255,255,255,0.8);
     font-size: 12px;
     text-align: center;
+    font-weight: 400;
 }
 .remd-list td{
     color: #fff;
     text-align: center;
     vertical-align: top;
+    font-size: 12px;
     border-bottom: 1px solid rgba(255,255,255,0.2);
 }
 .remd-list tr:last-child td,
@@ -381,9 +472,18 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
     background-image: linear-gradient(-1deg, #dcc97c 0%, #dd9b29 100%);
     box-shadow: inset 0 1px 1px 0 rgba(255,255,255,0.50), inset 0 -2px 4px 0 rgba(40,49,127,0.57);
 }
+.remd-list td[data-Bets]:hover .orange{
+    color: #3A3F7C!important;
+}
 .remd-list td .ds{
     display: block;
     line-height: 18px;
+}
+.remd-list td a{
+    color: rgba(255,255,255,0.5);
+}
+.remd-list td .block{
+    padding: 0 3px;
 }
 .d{
     padding: 5px 0;
@@ -391,7 +491,529 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
 .s{
     line-height: 60px;
 }
-.orange{
-    color: #FFD80D!important;
+.remd-list tr .orange{
+    color: #FFD80D;
 }
-/* 首页 结束 */
+.remd-list tr .gary{
+    color: rgba(255,255,255,0.51);
+}
+.remd-list tr .dis{
+    background: #ccc;
+    color: #fff;
+}
+    /* 首页 结束 */
+/* 赛事详情 开始 */
+.ban-left{
+    display: inline-block;
+    width: 36%;
+    float: left;
+}
+.ban-center{
+    display: inline-block;
+    width: 28%;
+    float: left;
+}
+
+.ban-right{
+    display: inline-block;
+    width: 36%;
+    float: right;
+}
+.race-banner{
+    background: url(../images/detail-bg.png) no-repeat center bottom;
+    background-size: cover;
+    min-height: 165px;
+}
+.banner-title{
+    padding: 6px 0;
+    text-align: center;
+    color: #fff;
+    position: relative;
+}
+.back-link{
+    display: inline-block;
+    text-align: center;
+    width: 15%;
+    color: #fff;
+    position: absolute;
+    left:0;
+}
+.banner-con{
+    overflow: hidden;
+    padding-top: 5px;
+    color: #fff;
+}
+.banner-con .ban-left,.banner-con .ban-right{
+    font-size: 17px;
+    text-align: center;
+    padding-top: 30px;
+}
+.ban-vs{
+    width: 90%;
+    max-width: 120px;
+    margin: 0 auto;
+}
+
+.banner-footer{
+    text-align: center;
+    /*padding-top: 7px;*/
+}
+.banner-footer .ban-time{
+    color: #fff;
+    font-size: 12px;
+    border-radius: 20px;
+    padding: 3px 10px;
+    background-color: rgba(0,0,0,0.60);
+}
+
+.remd-list .th-orange{
+    text-align: left;
+    padding-left: 15px;
+    background-color: #E3C551;
+    color: #3A3F7C;
+    font-size: 13px;
+    font-weight: normal;
+}
+.remd-list .de-score{
+    display: inline-block;
+    padding: 0 4px;
+}
+.score-td{
+    line-height: 40px;
+}
+.match-fin{
+    text-align: center;
+    font-size: 16px;
+    color: rgba(255,255,255,0.50);
+    padding-top: 40px;
+}
+.match-fin p{
+    padding: 10px 0;
+}
+.match-fin img{
+    width: 45%;
+}
+/* 赛事详情 结束 */
+/* 选择赛事 开始 */
+.wrapper {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    overflow: hidden;
+    -ms-touch-action: none;
+    height: 33px;
+    background: #4663a9;
+    z-index: 11;
+}
+.scroller {
+    /*position: fixed;*/
+    z-index: 1;
+    width: 100%;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-text-size-adjust: none;
+    -moz-text-size-adjust: none;
+    -ms-text-size-adjust: none;
+    -o-text-size-adjust: none;
+    text-size-adjust: none;
+}
+.match-menu{
+    width: 100%;
+    border-bottom: 1px solid rgba(238,238,238,0.30);
+    overflow: hidden;
+}
+.match-menu li{
+    display: inline-block;
+    float: left;
+    padding: 0 12px;
+    line-height: 33px;
+    color: rgba(255,255,255,0.60);
+    font-size: 13px;
+}
+.match-menu li.active{
+    color: #fff;
+    position: relative;
+}
+.match-menu .active:after{
+    content:"";
+    position: absolute;
+    left: 50%;
+    margin-left: -25px;
+    bottom: 0;
+    display: block;
+    width: 50px;
+    height: 3px;
+    background-color: #FFD80D;
+    border-radius: 10px;
+
+}
+.country-list li{
+    padding: 0 20px;
+    line-height: 65px;
+    color: #fff;
+    font-size: 13px;
+    border-bottom: 1px solid rgba(238,238,238,0.30);
+    background-color: #2F397A;
+}
+.country-list li .cun-flag{
+    width: 20px;
+    margin: 0 5px 3px 0;
+}
+.country-list li .fa{
+    margin-top: 25px;
+}
+.country-title h1{
+    line-height: .3;
+}
+.country-title img{
+    width: 23px;
+    position: relative;
+    top: 2px;
+}
+.country-title .title{
+    font-size: 16px;
+    color: #fff;
+    font-weight: normal!important;
+}
+
+
+/*.header {position:absolute;top:0; left:0;width:100%;height:45px;line-height:45px;font-size:16px;text-align:center;background:#e6e6e6}*/
+/*.footer {position:absolute;bottom:0; left:0;width:100%;height:48px;line-height:48px;font-size:16px;text-align:center;background:#e6e6e6}*/
+
+#wrapper {position:absolute;top:70px; bottom:48px;left:0;width:100%; z-index: 10}
+/*#scroller li {padding:0 10px;height:60px;line-height:60px;background:#ecf6ff;margin-top:10px}*/
+#pullDown, #pullUp {padding:0 10px;height:30px;line-height:30px;color:#888;text-align:center}
+/* 选择赛事 结束 */
+/* 个人中心 开始 */
+.u-info{
+    padding: 20px;
+    color: #fff;
+    font-size: 15px;
+}
+.u-info .userimg{
+    width: 45px;
+}
+.oper-list{
+    padding: 0 20px;
+    color: #fff;
+}
+.oper-list li>a{
+    overflow: hidden;
+    color: #fff;
+}
+.oper-list li>a:hover{
+    text-decoration: none;
+
+}
+.oper-list li{
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+.oper-list .lh{
+    display: block;
+    line-height: 60px;
+}
+.oper-list .fir-li{
+    line-height: normal;
+    padding: 10px 0;
+}
+.oper-list .fa{
+    margin-top: 22px;
+}
+.oper-list .p{
+    color: rgba(255,255,255,0.6);
+}
+.oper-list strong{
+    display: inline-block;
+    font-size: 20px;
+    font-weight: normal;
+    padding-top: 5px;
+}
+.oper-list .inline-btn{
+    display: inline-block;
+    width: 80px;
+    font-weight: normal;
+    margin-left: 10px;
+    height: 30px;
+}
+.oper-list li .pr{
+    position: relative;
+    padding: 5px 5px 0 0px;
+}
+.re-li{
+    padding: 10px 0;
+    overflow: hidden;
+    font-size: 12px;
+}
+.re-li .t{
+    padding: 5px 0 3px;
+}
+.re-li strong{
+    padding-top: 0;
+}
+.setting-r{
+    display: inline-block;
+    width: 190px;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    text-align: right;
+}
+/*注意事项*/
+.re-notice{
+    padding: 10px 0;
+    overflow: hidden;
+    font-size: 12px;
+}
+.re-notice h5{
+    font-size: 13px;
+    padding: 5px 0;
+}
+.re-notice p{
+    color: rgba(255,255,255,0.8);
+    padding-bottom: 5px;
+    line-height: 13px;
+}
+.transfer-search{
+    padding: 10px 0;
+    color: #fff;
+    text-align: center;
+}
+.transfer-search h5{
+    font-weight: normal;
+    padding: 25px 0;
+}
+.transfer-search label{
+    font-weight: normal;
+    width: 70px;
+    text-align: right;
+}
+.transfer-search .form-control{
+    display: inline-block;
+    width: 150px;
+    margin: 5px 20px;
+    height: 35px;
+    line-height: 35px;
+    border: 1px solid rgba(255,255,255,0.8);
+}
+.transfer-search .bets-btn{
+    height: 45px;
+    font-weight: normal;
+    margin-top: 60px;
+}
+/* 订单 */
+.order-title{
+    text-align: center;
+}
+.order-title li{
+    float: none;
+    padding: 0 30px;
+}
+.order-list li{
+    padding: 20px 20px 0;
+    color: rgba(255,255,255,0.5);
+}
+.order-list li .order-li{
+    background: rgba(255,255,255,0.06);
+    padding: 15px;
+}
+.order-list li .order-li h5{
+    color: #fff;
+    font-size: 15px;
+    font-weight: normal;
+}
+.order-list li .order-li strong{
+    font-size: 15PX;
+    font-weight: normal;
+    padding-left: 5px;
+}
+.order-list li .order-li .order-p{
+    line-height: 16px;
+    padding: 10px 0;
+}
+.no-order{
+    padding-top: 90px;
+    font-size: 14px;
+    text-align: center;
+    color: rgba(255,255,255,0.5);
+}
+.no-order img{
+    width: 35%;
+    margin-bottom: 10px;
+}
+.setting-head .inline-btn{
+    display: inline-block;
+    width: 55px;
+    font-weight: normal;
+    height: 23px;
+    line-height: 23px;
+    font-size: 12px;
+ }
+/* 个人中心 结束 */
+
+/*充值 开始*/
+.recharge li{
+    color: #fff;
+    padding: 5px 20px 10px;
+}
+.recharge li h4{
+    font-size: 17px;
+    color: #FFD844;
+    padding: 5px 0;
+    font-weight: normal;
+}
+.recharge li .rec-img{
+    height: 40px;
+}
+.recharge li p{
+    line-height: 22px;
+}
+/*充值 结束*/
+/* setting edit 开始 */
+.setting-edit{
+    color: #fff;
+    /*padding: 15px 15px 0 10px;*/
+    padding: 20px 20px 0 15px;
+}
+.setting-edit .form-group{
+    padding-bottom: 20px;
+    margin-bottom: 0;
+}
+.form-group .line-wrap{
+    overflow: hidden;
+    position: relative;
+    padding-left: 80px;
+}
+.setting-edit label{
+    display: inline-block;
+    width: 70px;
+    font-weight: normal!important;
+    text-align: right;
+    line-height: 38px;
+    margin: 0;
+    position: absolute;
+    left: 0px;
+}
+.setting-edit .dropdown,.setting-edit .form-control{
+    width: 100%;
+    float: right;
+}
+.setting-edit .form-control{
+    height: 38px;
+    padding: 8px 12px;
+    background-color: transparent;
+    border: 1px solid #E2EAFF;
+    color: #fff;
+}
+.border-t{
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-bottom: none!important;
+}
+.border-m{
+    border-radius: 0;
+    border-bottom: none!important;
+}
+.border-b{
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+}
+.setting-edit .dropdown-toggle{
+    width: 100%;
+    padding: 8px 12px;
+    background-color: transparent;
+    color: #fff;
+}
+.setting-edit .area-code{
+    position: absolute;
+    left: 80px;
+    display: inline-block;
+    width: 50px;
+    height: 38px;
+    text-align: center;
+    line-height: 38px;
+    color: #FFD80D;
+    font-size: 12px;
+    border-right: 1px solid #E2EAFF;
+}
+.setting-edit .area-input{
+    padding-left: 60px;
+}
+.overhide{
+    overflow: visible!important;
+}
+
+.password-edit .form-group .line-wrap{
+    padding-left: 100px;
+}
+.password-edit label{
+    width: 80px;
+}
+/* setting edit 结束 */
+
+@media screen and (max-width:321px){
+    .soccer-l,.soccer-r{
+        color: #33D578;
+        font-size: 56px;
+        float: left;
+    }
+    .soccer-vs{
+        width: 30%;
+        float: left;
+        margin: 17px 0px 0;
+    }
+}
+
+@media screen and (min-width:321px) and (max-width:400px){
+    .soccer-l,.soccer-r{
+        color: #33D578;
+        font-size: 56px;
+        float: left;
+    }
+    .soccer-vs{
+        width: 30%;
+        float: left;
+        margin: 14px 0px 0;
+    }
+}
+
+@media screen and (min-width:400px){
+    .soccer-l,.soccer-r{
+        color: #33D578;
+        font-size: 60px;
+        float: left;
+    }
+    .soccer-vs{
+        /*width: 30px;*/
+        width: 30%;
+        float: left;
+        margin: 15px 2px 0;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -28,10 +28,10 @@
             <div class="wrap-content">
                 <div class="profile-menu">
                     <ul class="menu-ul">
-                        <li><a href="#">HOME</a><i class="fa fa-chevron-right"></i></li>
-                        <li><a href="#">ALL GAMES</a><i class="fa fa-chevron-right"></i></li>
-                        <li><a href="#">FOLLOW ORDER</a><i class="fa fa-chevron-right"></i></li>
-                        <li><a href="#">NEWS</a><i class="fa fa-chevron-right"></i></li>
+                        <li><a href="index.html">HOME <i class="fa fa-chevron-right"></i></a></li>
+                        <li><a href="allGame.html">ALL GAMES <i class="fa fa-chevron-right"></i></a></li>
+                        <li><a href="#">FOLLOW ORDER <i class="fa fa-chevron-right"></i></a></li>
+                        <li><a href="#">NEWS <i class="fa fa-chevron-right"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -40,125 +40,79 @@
         <div class="phone-box wrap push">
             <div id="home" class="menu-notify">
                 <div class="profile-left">
-                    <a href="#menu" class="menu-link"><i class="fa fa-chevron-left"></i></a>
+                    <a href="#menu" class="menu-link"><i class="fa fa-reorder"></i></a>
                 </div>
                 <div class="Profile-mid logo">
                     <h1>
-                        <a class="link link--yaku" href="single.html">
+                        <a class="link pull-left" href="single.html">
                             <img src="../public/images/logo.png"/>&nbsp;&nbsp;KENYA
                         </a>
                     </h1>
                 </div>
                 <div class="Profile-right">
-                    <div data-toggle="modal" data-target="#login"><i class="fa fa-home"></i></div>
+                    <div data-toggle="modal" data-target="#login"><i class="user-icon"><em class="news-tip"></em></i></div>
                 </div>
                 <div class="clearfix"></div>
             </div>
             <div class="banner">
-                <div class="swiper-container">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">Slide 1</div>
-                        <div class="swiper-slide">Slide 2</div>
-                        <div class="swiper-slide">Slide 3</div>
-                    </div>
+                <div class="swiper-container" id="res-banner">
+                    <div class="swiper-wrapper"></div>
+                    <script type="text/template" charset="utf-8" id="tpl-banner">
+                        {{? it.length}}
+                            {{~ it:value:index}}
+                                <div class="swiper-slide"><a href="{{= value.adUrl}}"><img src="{{= value.adImage}}"></a></div>
+                            {{~}}
+                        {{?}}
+                    </script>
                     <!-- 如果需要分页器 -->
                     <div class="swiper-pagination"></div>
                 </div>
             </div>
             <!-- recommend -->
-            <div class="recommend">
-                <table class="remd-list">
-                    <tr>
-                        <th width="5">&nbsp;</th>
-                        <th width="30%" class="left">Italy Serie B</th>
-                        <th width="15%">Result</th>
-                        <th width="17%">1</th>
-                        <th width="16%">X</th>
-                        <th width="17%">2</th>
-                    </tr>
-                    <tr>
-                        <td>&nbsp;</td>
-                        <td class="left d">
-                            <span class="ds">Foggia</span>
-                            <span class="ds">Empoli</span>
-                            <em>20:00</em> <a href="">5</a> <i class="fa fa-chevron-right"></i>
-                        </td>
-                        <td class="d orange">
-                            <span class="ds">0</span>
-                            <span class="ds">0</span>
-                        </td>
-                        <td class="s orange bg" data-Bets="">1.32</td>
-                        <td class="s orange bg" data-Bets="">2.3</td>
-                        <td class="s orange bg" data-Bets="">0.6</td>
-                    </tr>
-                    <tr>
-                        <td>&nbsp;</td>
-                        <td class="left d">
-                            <span class="ds">Foggia</span>
-                            <span class="ds">Empoli</span>
-                            <em>20:00</em> <a href="">5</a> <i class="fa fa-chevron-right"></i>
-                        </td>
-                        <td class="d orange">
-                            <span class="ds">0</span>
-                            <span class="ds">0</span>
-                        </td>
-                        <td class="s orange bg" data-Bets="">1.32</td>
-                        <td class="s orange bg" data-Bets="">2.3</td>
-                        <td class="s orange bg" data-Bets="">0.6</td>
-                    </tr>
-                </table>
-
-                <table class="remd-list">
-                    <tr>
-                        <th width="5">&nbsp;</th>
-                        <th width="30%" class="left">Italy Serie B</th>
-                        <th width="15%">Result</th>
-                        <th width="17%">1</th>
-                        <th width="16%">X</th>
-                        <th width="17%">2</th>
-                    </tr>
-                    <tr>
-                        <td>&nbsp;</td>
-                        <td class="left d">
-                            <span class="ds">Foggia</span>
-                            <span class="ds">Empoli</span>
-                            <em>20:00</em> <a href="">5</a> <i class="fa fa-chevron-right"></i>
-                        </td>
-                        <td class="d orange">
-                            <span class="ds">0</span>
-                            <span class="ds">0</span>
-                        </td>
-                        <td class="s orange bg" data-Bets="">1.32</td>
-                        <td class="s orange bg" data-Bets="">2.3</td>
-                        <td class="s orange bg" data-Bets="">0.6</td>
-                    </tr>
-                    <tr>
-                        <td>&nbsp;</td>
-                        <td class="left d">
-                            <span class="ds">Foggia</span>
-                            <span class="ds">Empoli</span>
-                            <em>20:00</em> <a href="">5</a> <i class="fa fa-chevron-right"></i>
-                        </td>
-                        <td class="d orange">
-                            <span class="ds">0</span>
-                            <span class="ds">0</span>
-                        </td>
-                        <td class="s orange bg" data-Bets="">1.32</td>
-                        <td class="s orange bg" data-Bets="">2.3</td>
-                        <td class="s orange bg" data-Bets="">0.6</td>
-                    </tr>
-                </table>
-            </div>
+            <div class="recommend" id="res-recommendList"></div>
+                <script type="text/template" charset="utf-8" id="tpl-recommendList">
+                    {{? it.length}}
+                    {{~ it :value:index}}
+                    <table class="remd-list">
+                        <tr>
+                            <th width="5">&nbsp;</th>
+                            <th width="30%" class="left">{{= value.competitionName}}</th>
+                            <th width="15%">Result</th>
+                            <th width="17%">1</th>
+                            <th width="16%">X</th>
+                            <th width="17%">2</th>
+                        </tr>
+                        {{~ value.events: key:ind}}
+                            <tr data-eventId="{{= key.eventId}}"  data-homeTeamName="{{= key.homeTeamName}}" data-awayTeamName="{{= key.awayTeamName}}"   data-competitionName="{{= value.competitionName}}" >
+                                <td>&nbsp;</td>
+                                <td class="left d">
+                                    <span class="ds">{{= key.homeTeamName}}</span>
+                                    <span class="ds">{{= key.awayTeamName}}</span>
+                                    <a href="race-detail.html">
+                                        <em>{{= $.dateFmt(key.eventTime, "hh:mm")}}</em> <span class="block">{{= key.marketCount}}</span> <i class="fa fa-chevron-right"></i>
+                                    </a>
+                                </td>
+                                <td class="d orange">
+                                    <span class="ds">{{= key.homeTeamScore}}</span>
+                                    <span class="ds">{{= key.awayTeamScore}}</span>
+                                </td>
+                                {{? key.market}}
+                                    {{~ key.market.selections :v:i}}
+                                        <td class="s orange bg able" data-marketId="{{= key.market.marketId}}" data-verifyResult="{{= key.market.verifyResult}}" data-selectionId="{{= v.selectionId}}" data-maxStakeLimit="{{= v.maxStakeLimit}}" data-v1="{{= v.v1}}" data-v2="{{= v.v2}}" data-v3="{{= v.v3}}" >{{= v.backOdds}}</td>
+                                    {{~}}
+                                {{??}}
+                                    <td class="s orange bg dis">&nbsp;</td>
+                                    <td class="s orange bg dis">&nbsp;</td>
+                                    <td class="s orange bg dis">&nbsp;</td>
+                                {{?}}
+                            </tr>
+                        {{~}}
+                    </table>
+                    {{~}}
+                    {{?}}
+                </script>
         </div>
     </div>
-
-
-
-
-
-
-
-
 
 
 
@@ -167,19 +121,20 @@
     <!--<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#reset">重置密码</button>-->
     <!-- 登录模态框（Modal） -->
     <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog login-box">
+        <div class="modal-dialog login-box modal-top">
             <div class="modal-content login-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title center">LOGIN</h4>
                 </div>
                 <div class="modal-body">
-                    <input type="text" class="form-control" placeholder="Tel Number">
-                    <input type="password" class="form-control" placeholder="Password">
+                    <input type="text" class="form-control" placeholder="Tel Number" name="accountNumber">
+                    <input type="password" class="form-control" placeholder="Password" name="password">
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn login-submit">LOGIN</button>
-                    <span class="link logup">Lost Login？</span>
+                    <button type="button" class="btn login-btn " id="login-submit">LOGIN</button>
+                    <span class="link reset">Forget Password？</span>
+                    <span class="link logup pull-right">Logup？</span>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal -->
@@ -187,22 +142,23 @@
 
     <!-- 注册模态框（Modal） -->
     <div class="modal fade" id="logup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog login-box">
+        <div class="modal-dialog login-box modal-top">
             <div class="modal-content login-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title center">REGISTER</h4>
                 </div>
                 <div class="modal-body">
-                    <input type="text" class="form-control" placeholder="Tel Number">
+                    <input type="text" class="form-control" placeholder="Tel Number" name="userPhone">
                     <label>
-                        <input type="password" class="form-control width70" placeholder="Verification Code">
+                        <input type="text" class="form-control width70" placeholder="Verification Code" name="">
                         <a href="javascript:;" class="smsSend">SEND</a>
                     </label>
+                    <input type="password" class="form-control" placeholder="passWord" name="passWord">
                     <p><span class="agress agreed"></span>Agree《xxxxxxxx》</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn login-submit">REGISTER</button>
+                    <button type="button" class="btn login-btn" id="logup-btn">REGISTER</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal -->
@@ -210,7 +166,7 @@
 
     <!-- 重置密码模态框（Modal） -->
     <div class="modal fade" id="reset" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog login-box">
+        <div class="modal-dialog login-box modal-top">
             <div class="modal-content login-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -221,122 +177,36 @@
                     <input type="password" class="form-control" placeholder="Repeat My Password">
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn login-submit">CONFIRM</button>
+                    <button type="button" class="btn login-btn">CONFIRM</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal -->
     </div>
 
-    <!-- 下注模态框（Modal） -->
-    <div class="modal fade" id="bets" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog bet-slip">
+    <!-- 登录失败 -->
+    <div class="modal fade" id="login-fail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog login-box modal-top">
             <div class="modal-content login-content">
-                <div class="modal-header bets-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Bet Slip</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="bet-left">
-                        <h5>SV Dellach/Gail or Draw</h5>
-                        <p>Double Chance <br> SC Landskron v SV Dellach/Gail</p>
-                    </div>
-                    <div class="bet-right">
-                        <input type="text width30" class="form-control" placeholder="Stake">
-                        <p>Total Possible Win <br><strong>0.00</strong></p>
-                    </div>
-                    <ul class="bets-amount">
-                        <li>50</li>
-                        <li>100</li>
-                        <li>200</li>
-                        <li>500</li>
-                        <li>1000</li>
-                    </ul>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn bets-btn bets-submit">ACCEPT</button>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal -->
-    </div>
-
-    <!-- 下注成功 -->
-    <div class="modal fade" id="bets-Success" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog bet-slip">
-            <div class="modal-content login-content">
-                <div class="modal-header betsSuc-header">
-                    <h4 class="modal-title"><img src="../public/images/bets-suc.png" class="bet-sucIcon"/>Congratulations</h4>
-                </div>
-                <div class="modal-body betSuc-body">
-                    <h5>SV Dellach/Gail or Draw</h5>
-                    <p>Double Chance <br> SC Landskron v SV Dellach/Gail</p>
-                    <p class="s-p">Betting <strong>500.00</strong>Total Possible Win <strong class="orange">750.00</strong></p>
+                <div class="modal-body login-fail">
+                    <h5>LOGIN Failed</h5>
+                    <p class="orange">The Password is Wrong</p>
                 </div>
                 <div class="modal-footer betSuc-footer">
-                    <button type="button" data-dismiss="modal" class="back-btn inline-btn">Back</button>
-                    <button type="button" class="bets-btn inline-btn">Share</button>
+                    <button type="button" data-dismiss="modal" class="btn login-btn fail-btn">OK</button>
                 </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal -->
+            </div>
+        </div>
     </div>
 
-    <!-- 下注失败 -->
-    <div class="modal fade" id="bets-fail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog bet-slip">
-            <div class="modal-content login-content">
-                <div class="modal-header betsSuc-header">
-                    <h4 class="modal-title"><img src="../public/images/bets-suc.png" class="bet-sucIcon"/>Oops！</h4>
-                </div>
-                <div class="modal-body betSuc-body">
-                    <h5>SV Dellach/Gail or Draw</h5>
-                    <p>Double Chance <br> SC Landskron v SV Dellach/Gail</p>
-                    <p class="s-p">Betting <strong>500.00</strong>Total Possible Win <strong class="orange">750.00</strong></p>
-                </div>
-                <div class="modal-footer betSuc-footer">
-                    <button type="button" data-dismiss="modal" class="back-btn inline-btn">Back</button>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal -->
-    </div>
-
-    <script type="text/javascript" src="../public/scripts/jquery-2.1.4.min.js"></script>
-    <script type="text/javascript" src="../public/scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../public/scripts/vendor/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="../public/scripts/vendor/bootstrap.min.js"></script>
     <!-- 侧边栏控制开关 -->
-    <script type="text/javascript" src="../public/scripts/bigSlide.js"></script>
+    <script type="text/javascript" src="../public/scripts/vendor/bigSlide.js"></script>
     <!--  轮播图-->
-    <script type="text/javascript" src="../public/scripts/swiper.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            //侧边栏控制
-            $('.menu-link').bigSlide();
-
-            // banner
-            var mySwiper = new Swiper ('.swiper-container', {
-                direction: 'horizontal',
-                loop: true,
-                autoplay: {
-                    delay: 2500,
-                    disableOnInteraction: false,
-                },
-                // 如果需要分页器
-                pagination: {
-                    el: '.swiper-pagination',
-                }
-            })
-            //注册框显示
-            $('.logup').on('click', function(){
-                $('#logup').modal('show');
-            })
-            //下注框显示
-            $('.recommend').on('click','td[data-Bets]',function(){
-                $('#bets').modal('show');
-            })
-            //下注提交
-            $('.bets-submit').on('click', function(){
-                $('#bets').modal('hide');
-                $('#bets-fail').modal('show');
-            })
-        });
-
+    <script type="text/javascript" src="../public/scripts/vendor/swiper.min.js"></script>
+    <script type="text/javascript" src="../public/scripts/vendor/doT.min.js"></script>
+    <script type="text/javascript" src="../public/scripts/common.js"></script>
+    <script type="text/javascript" src="../public/scripts/index.js">
     </script>
 </body>
 </html>

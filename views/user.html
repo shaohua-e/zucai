@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="format-detection" content="telephone=no,email=no"/>
+    <meta name="apple-mobile-web-app-title" content="足彩"/>
+    <title></title>
+    <!--font-awsome-css-->
+    <link rel="stylesheet" href="../public/styles/font-awesome.min.css">
+    <!--bootstrap-->
+    <link rel="stylesheet" href="../public/styles/bootstrap.min.css">
+    <!--custom css-->
+    <link rel="stylesheet" href="../public/styles/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" href="../public/styles/index.css" />
+    <link rel="stylesheet" href="../public/styles/common.css">
+
+
+</head>
+<body>
+    <div class="masthead pdng-stn1">
+        <!-- 左侧抽屉开始 -->
+        <div id="menu" class="panel" role="navigation">
+            <div class="wrap-content">
+                <div class="profile-menu">
+                    <ul class="menu-ul">
+                        <li><a href="#">HOME</a><i class="fa fa-chevron-right"></i></li>
+                        <li><a href="#">ALL GAMES</a><i class="fa fa-chevron-right"></i></li>
+                        <li><a href="#">FOLLOW ORDER</a><i class="fa fa-chevron-right"></i></li>
+                        <li><a href="#">NEWS</a><i class="fa fa-chevron-right"></i></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- 内容开始 -->
+        <div class="phone-box wrap push">
+            <div id="home" class="menu-notify">
+                <div class="profile-left">
+                    <a href="#menu" class="menu-link"><i class="fa fa-reorder"></i></a>
+                </div>
+                <div class="Profile-mid logo">
+                    <h1>
+                        <a class="link link--yaku pull-left" href="single.html">
+                            <img src="../public/images/logo.png"/>&nbsp;&nbsp;KENYA
+                        </a>
+                    </h1>
+                </div>
+                <div class="Profile-right">
+                    <div data-toggle="modal" data-target="#login" class=""><i class="user-icon"><em class="news-tip"></em></i></div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="usercenter">
+                <div class="u-info">
+                    <img src="../public/images/useIcon.png" class="userimg">
+                    <span>168 0876 9867</span>
+                </div>
+                <ul class="oper-list">
+                    <li class="fir-li">
+                        <p class="p">Balance</p>
+                        <strong class="orange">457800.00</strong>
+                        <button type="button" class="bets-btn pull-right inline-btn">Recharge</button><button type="button" class="back-btn pull-right inline-btn">Withdraw</button>
+                        <div class="clearfix"></div>
+                    </li>
+                    <li><a href="notice.html" class="lh"><span class="pr">Notice <em class="news-tip"></em></span><i class="fa fa-chevron-right pull-right"></i></a></li>
+                    <li><a href="order.html?tid=0" class="lh">Order<i class="fa fa-chevron-right pull-right"></i></a></li>
+                    <li><a href="setting.html" class="lh">Setting<i class="fa fa-chevron-right pull-right"></i></a></li>
+                    <li><a href="transfer-details.html" class="lh">Transfer Details<i class="fa fa-chevron-right pull-right"></i></a></li>
+                    <li><a href="javascript:;" class="lh">Customer Service<i class="fa fa-chevron-right pull-right"></i></a></li>
+                    <li><a href="password.html" class="lh">Password<i class="fa fa-chevron-right pull-right"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <script type="text/javascript" src="../public/scripts/vendor/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="../public/scripts/vendor/bootstrap.min.js"></script>
+    <!-- 侧边栏控制开关 -->
+    <script type="text/javascript" src="../public/scripts/vendor/bigSlide.js"></script>
+    <script type="text/javascript" src="../public/scripts/common.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            //侧边栏控制
+            $('.menu-link').bigSlide();
+
+            //忘记密码
+            $('body').on('click', '.reset', function(){
+                $('#login').modal('hide');
+                $('#reset').modal('show');
+            })
+            //注册
+            $('body').on('click', '.logup', function(){
+                $('#login').modal('hide');
+                $('#logup').modal('show');
+            })
+        });
+
+    </script>
+</body>
+</html>

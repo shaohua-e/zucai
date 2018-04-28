@@ -1316,7 +1316,7 @@ select option{
 }
 @media (max-width: 568px){
 	.Profile-mid.logo h1 {
-		line-height: .5;
+		line-height: .4;
 	}
 	.bef-aft {
 		min-height: 366px;
