@@ -269,7 +269,7 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
     margin: 0 auto;
     height: 40px;
     background-color: #E3C551;
-    color: #3A3F7C;
+    color: #3A3F7C!important;
     font-size: 15px;
     text-align: center;
     border-radius: 6px;
@@ -430,15 +430,22 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
 .swiper-container {
     width: 100%;
     min-height: 145px;
+    height: 170px;
 }
-.swiper-slide,.swiper-slide a img{
+.swiper-slide,.swiper-slide a{
+    display: block;
     width: 100%;
     height: 100%;
 }
+/*.swiper-slide,.swiper-slide a img{*/
+    /*width: 100%;*/
+    /*height: 100%;*/
+/*}*/
 .remd-list{
     width: 100%;
     margin-bottom: 10px;
     background-color: #4F5D99;
+    overflow: hidden;
 }
 
 .remd-list th{
@@ -460,19 +467,19 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
 .remd-list td:first-child{
     border: none;
 }
-.remd-list td.bg{
+.remd-list .bg{
     background: -webkit-linear-gradient(#54619A, #333E7E); /* Safari 5.1 - 6.0 */
     background: -o-linear-gradient(#54619A, #333E7E); /* Opera 11.1 - 12.0 */
     background: -moz-linear-gradient(#54619A, #333E7E); /* Firefox 3.6 - 15 */
     background: linear-gradient(#54619A, #333E7E); /* 标准的语法 */
     box-shadow: 0 1px 3px 0 rgba(47,56,121,0.50), inset 1px 0 1px 0 rgba(255,255,255,0.05), inset 0 1px 1px 0 rgba(255,255,255,0.23), inset 0 0px 3px 0 rgba(40,49,127,0.31);
 }
-.remd-list td[data-Bets]:hover{
+.remd-list .bg:hover{
     color: #3A3F7C!important;
     background-image: linear-gradient(-1deg, #dcc97c 0%, #dd9b29 100%);
     box-shadow: inset 0 1px 1px 0 rgba(255,255,255,0.50), inset 0 -2px 4px 0 rgba(40,49,127,0.57);
 }
-.remd-list td[data-Bets]:hover .orange{
+.remd-list .bg:hover .orange{
     color: #3A3F7C!important;
 }
 .remd-list td .ds{
@@ -539,6 +546,8 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
     left:0;
 }
 .banner-con{
+    max-width: 640px;
+    margin: 0 auto;
     overflow: hidden;
     padding-top: 5px;
     color: #fff;
@@ -551,7 +560,7 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
 .ban-vs{
     width: 90%;
     max-width: 120px;
-    margin: 0 auto;
+    margin: 10px auto;
 }
 
 .banner-footer{
@@ -659,10 +668,15 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
 .country-list li{
     padding: 0 20px;
     line-height: 65px;
-    color: #fff;
     font-size: 13px;
     border-bottom: 1px solid rgba(238,238,238,0.30);
     background-color: #2F397A;
+}
+.country-list li a{
+    display: block;
+    width: 100%;
+    height: 100%;
+    color: #fff;
 }
 .country-list li .cun-flag{
     width: 20px;
@@ -736,6 +750,7 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
     font-size: 20px;
     font-weight: normal;
     padding-top: 5px;
+    padding-right: 10px;
 }
 .oper-list .inline-btn{
     display: inline-block;
@@ -743,6 +758,7 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
     font-weight: normal;
     margin-left: 10px;
     height: 30px;
+    line-height: 30px;
 }
 .oper-list li .pr{
     position: relative;
@@ -957,6 +973,32 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
 .password-edit label{
     width: 80px;
 }
+
+.remd-dl .remd-title{
+    line-height: 25px;
+}
+.remd-dl dd{
+    width: 33.333333%;
+    float: left;
+    text-align: center;
+    line-height: 41px;
+    color: #fff;
+    font-size: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+.notice-de{
+    color: #fff;
+    padding: 15px;
+}
+.notice-de h5{
+    text-align: center;
+    font-size: 16px;
+}
+.notice-de .p{
+    text-align: right;
+    width: 70%;
+    margin: 5px auto;
+}
 /* setting edit 结束 */
 
 @media screen and (max-width:321px){
@@ -994,6 +1036,7 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
     .soccer-vs{
         /*width: 30px;*/
         width: 30%;
+        max-width: 33px;
         float: left;
         margin: 15px 2px 0;
     }

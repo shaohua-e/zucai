@@ -24,7 +24,7 @@ var Index = {
     getBanner: function(){
         $.ajax({
             type: 'get',
-            url: apiDomain + '/adInfo/findAllAd?' + new Date().getTime(),
+            url: apiDomain + '/adInfo/findAdInfoAll?' + new Date().getTime(),
             dataType: "json",
             cache: false,
             data: {},
@@ -33,6 +33,21 @@ var Index = {
 //                  渲染模版
                     var tpl = doT.template($("#tpl-banner").html());
                     $("#res-banner").html(tpl(data.results));
+
+                    // banner
+                    var mySwiper = new Swiper ('.swiper-container', {
+                        direction: 'horizontal',
+                        loop: true,
+                        // autoplay: {
+                        //     delay: 2500,
+                        //     disableOnInteraction: false,
+                        // },
+                        // 如果需要分页器
+                        pagination: {
+                            el: '.swiper-pagination',
+                        }
+                    })
+                    $.adaImg($("#res-banner"));
                 } else {
                     //简单提示框
                     $.blt(data.msg);
@@ -53,7 +68,7 @@ var Index = {
             return;
         }
         $.ajax({
-            type: 'post',
+            type: 'get',
             url: apiDomain + '/user/register?' + new Date().getTime(),
             dataType: "json",
             cache: false,
@@ -85,8 +100,8 @@ var Index = {
             return;
         }
         $.ajax({
-            type: 'post',
-            url: apiDomain + '/user/register?' + new Date().getTime(),
+            type: 'get',
+            url: apiDomain + '/user/sign?' + new Date().getTime(),
             dataType: "json",
             cache: false,
             data: {
@@ -96,6 +111,8 @@ var Index = {
             success: function (data) {
                 if (data.code == "0") {
                     $('#login').modal('hide');
+                    $.cookie('userId',data.results.userId);
+                    $.cookie('accountId',data.results.userAccountId);
                 } else {
                     //简单提示
                     $.blt(data.msg);
@@ -112,25 +129,7 @@ $(document).ready(function() {
     $('.menu-link').bigSlide();
 
     Index.getBanner();
-    // banner
-    var mySwiper = new Swiper ('.swiper-container', {
-        direction: 'horizontal',
-        loop: true,
-        autoplay: {
-            delay: 2500,
-            disableOnInteraction: false,
-        },
-        // 如果需要分页器
-        pagination: {
-            el: '.swiper-pagination',
-        }
-    })
 
-
-    $('.login-submit').on('click', function(){
-        $('#login').modal('hide');
-        $('#login-fail').modal('show');
-    })
     //忘记密码
     $('body').on('click', '.reset', function(){
         $('#login').modal('hide');

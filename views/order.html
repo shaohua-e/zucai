@@ -36,37 +36,46 @@
             </div>
             <div class="usercenter">
                 <ul class="match-menu order-title">
-                    <li data-tid="0">Handling</li>
-                    <li data-tid="1">Done</li>
-                </ul>
-                <!-- -->
-                <div class="no-order">
-                    <img src="../public/images/no-data.png">
-                    <p>No Data</p>
-                </div>
+                    <li data-tid="2" class="active">Done</li>
+                    <li data-tid="1" >Handling</li>
 
-                <!--<ul class="order-list">-->
-                    <!--<li>-->
-                        <!--<p class="p">2017-12-14 00:30</p>-->
-                        <!--<div class="order-li">-->
-                            <!--<h5>SV Dellach/Gail or Draw</h5>-->
-                            <!--<p class="order-p">Double Chance <br/>SC Landskron v SV Dellach/Gail</p>-->
-                            <!--<div>Betting<strong class="white">500.00</strong>-->
-                                <!--<p class="pull-right">Gained<strong class="orange">750.00</strong></p>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</li>-->
-                    <!--<li>-->
-                        <!--<p class="p">2017-12-14 00:30</p>-->
-                        <!--<div class="order-li">-->
-                            <!--<h5>SV Dellach/Gail or Draw</h5>-->
-                            <!--<p class="order-p">Double Chance <br/>SC Landskron v SV Dellach/Gail</p>-->
-                            <!--<div>Betting<strong class="white">500.00</strong>-->
-                                <!--<p class="pull-right">Gained<strong class="orange">750.00</strong></p>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</li>-->
-                <!--</ul>-->
+                </ul>
+                <div id="res-order"></div>
+                <script type="text/template" charset="utf-8" id="tpl-order">
+                    {{? it.length}}
+                        <ul class="order-list">
+                            {{~ it:value:index}}
+                            <li>
+                                <p class="p">{{= $.dateFmt(value.createTime, "yyyy-MM-dd hh:mm")}}</p>
+                                <div class="order-li">
+                                    <h5>{{= value.homeTeam}}/{{= value.awayTeam}}</h5>
+                                    <p class="order-p">
+                                        {{? value.ruleTypeId == "100"}}
+                                            3 Way
+                                        {{?? value.ruleTypeId == "130"}}
+                                            Odd/Even
+                                        {{?? value.ruleTypeId == "140"}}
+                                            Correct Score
+                                        {{?? value.ruleTypeId == "350"}}
+                                            Next Team To Score
+                                        {{?? value.ruleTypeId == "410"}}
+                                            Total Goals Exactly
+                                        {{?}}
+                                        <br/>{{= value.competitionName}}</p>
+                                    <div>Betting<strong class="white">{{= value.orderMoney}}</strong>
+                                        <p class="pull-right">Gained<strong class="orange">{{= value.orderMoney * value.orderOdds}}</strong></p>
+                                    </div>
+                                </div>
+                            </li>
+                            {{~}}
+                        </ul>
+                    {{??}}
+                        <div class="no-order">
+                            <img src="../public/images/no-data.png">
+                            <p>No Data</p>
+                        </div>
+                    {{?}}
+                </script>
             </div>
         </div>
     </div>
@@ -74,22 +83,35 @@
 
     <script type="text/javascript" src="../public/scripts/vendor/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="../public/scripts/vendor/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../public/scripts/vendor/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../public/scripts/vendor/doT.min.js"></script>
     <script type="text/javascript" src="../public/scripts/common.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function() {
-            var tid = parseInt($.getQueryString('tid'));
-            $('.order-title [data-tid]').eq(tid).addClass('active');
-            getInfo(tid);
 
             $('.order-title').on('click', '[data-tid]', function(){
-                var tid = $(this).data('tid');
-                location.href = '/zucai/views/order.html?tid='+tid;
-                //$(this).addClass('active').sibling().removeClass('active');
+                var tid = $(this).attr('data-tid');
+                $(this).addClass('active').siblings().removeClass('active');
+                getInfo(tid);
             })
-
+            getInfo(2);
              function getInfo(tid){
+                 $.ajax({
+                     type: 'get',
+                     url: apiDomain + '/order/getOrderList?' + new Date().getTime(),
+                     dataType: "json",
+                     cache: false,
+                     data: {userId: $.cookie('userId'),state: tid},
+                     success: function (data) {
+                         if (data.code == "0") {
+                             var tpl = doT.template($("#tpl-order").html());
+                             $("#res-order").html(tpl(data.results));
+                         } else {
 
+                         }
+                     }
+                 })
              }
         });
 

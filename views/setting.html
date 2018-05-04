@@ -40,30 +40,44 @@
                 </div>
                 <div class="clearfix"></div>
             </div>
-            <div class="usercenter">
-                <ul class="oper-list">
-                    <li class="lh">Name<span class="pull-right p setting-r">John  Ive</span></li>
-                    <li class="lh">Tel<span class="pull-right p setting-r">168 0876 9867</span></li>
-                    <li class="lh">Email<span class="pull-right p setting-r">Johnive@hotmail.com</span></li>
-                    <li class="lh">ID Number<span class="pull-right p setting-r">8972836627642367</span></li>
-                    <li class="lh">Address<span class="pull-right p setting-r">Unit 12,Anton Business Park…</span></li>
+            <div class="usercenter" id="res-setting"></div>
+            <script type="text/template" charset="utf-8" id="tpl-setting">
+                <ul class="oper-list" >
+                    <li class="lh">Name<span class="pull-right p setting-r">{{= it.userName}}</span></li>
+                    <li class="lh">Tel<span class="pull-right p setting-r">{{= it.userPhone}}</span></li>
+                    <li class="lh">Email<span class="pull-right p setting-r">{{= it.userEMail}}</span></li>
+                    <li class="lh">ID Number<span class="pull-right p setting-r">{{= it.userIdNumber}}</span></li>
+                    <li class="lh">Address<span class="pull-right p setting-r">{{= it.userAddress1}}</span></li>
                 </ul>
-            </div>
+            </script>
         </div>
     </div>
 
-
-
-
     <script type="text/javascript" src="../public/scripts/vendor/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="../public/scripts/vendor/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../public/scripts/vendor/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../public/scripts/vendor/doT.min.js"></script>
     <!-- 时间插件 -->
     <script type="text/javascript" src="../public/scripts/vendor/bootstrap-datepicker.min.js"></script>
     <script type="text/javascript" src="../public/scripts/common.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function() {
+            $.ajax({
+                type: 'get',
+                url: apiDomain + '/user/findUserInfo?' + new Date().getTime(),
+                dataType: "json",
+                cache: false,
+                data: {userId: $.cookie('userId')},
+                success: function (data) {
+                    if (data.code == "0") {
+                        var tpl = doT.template($("#tpl-setting").html());
+                        $("#res-setting").html(tpl(data.results));
+                    } else {
 
+                    }
+                }
+            })
         });
 
     </script>

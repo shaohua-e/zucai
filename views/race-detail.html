@@ -22,112 +22,272 @@
 <body>
     <div class="masthead pdng-stn1">
         <!-- 内容开始 -->
-        <div class="phone-box wrap push">
+        <div class="phone-box wrap push" id="res-raceDetail"></div>
+        <script type="text/template" charset="utf-8" id="tpl-raceDetail">
             <div class="banner">
                 <div class="race-banner">
                     <div class="banner-title ">
                         <a href="javascript:history.go(-1);" class="back-link"><i class="fa fa-chevron-left"></i></a>
-                        Italy Serie B
+                        {{= it.event.competitionName}}
                     </div>
                     <div class="banner-con">
-                        <span class="ban-left">Real Madrid </span>
-                        <!--<div class="ban-center center"><img src="../public/images/vs.jpg" class="ban-vs"></div>-->
-                        <div class="ban-center center">
-                            <span class="soccer-l">1</span>
-                            <img src="../public/images/soccer-vs.png" class="soccer-vs">
-                            <span class="soccer-r">2</span>
-                        </div>
-                        <span class="ban-right">Barcelona </span>
+                        <span class="ban-left">{{= it.event.homeTeamName}}</span>
+                        {{? it.event.state == "0"}}
+                            <div class="ban-center center"><img src="../public/images/vs.png" class="ban-vs"></div>
+                        {{??}}
+                            <div class="ban-center center">
+                                <span class="soccer-l">{{= it.event.homeTeamScore}}</span>
+                                <img src="../public/images/soccer-vs.png" class="soccer-vs">
+                                <span class="soccer-r">{{= it.event.awayTeamScore}}</span>
+                            </div>
+                        {{?}}
+                        <span class="ban-right">{{= it.event.awayTeamName}}</span>
                     </div>
                     <div class="banner-footer">
-                        <span class="ban-time">2017-02-10 03:45</span>
+                        <span class="ban-time">{{= $.dateFmt(it.event.eventTime, "yyyy-MM-dd hh:mm")}}</span>
                     </div>
                 </div>
             </div>
             <!-- recommend -->
-            <!-- <div class="recommend">
-                <table class="remd-list">
-                    <tr>
-                        <th colspan="3" class="th-orange">Fulltime Result</th>
-                    </tr>
-                    <tr>
-                        <td class="s bg" data-Bets="">
-                            <span class="de-score orange">1.32</span><span class="de-score">1.32</span>
-                        </td>
-                        <td class="s bg" data-Bets="">
-                            <span class="de-score">1.32</span><span class="de-score">1.32</span>
-                        </td>
-                        <td class="s bg" data-Bets="">
-                            <span class="de-score">1.32</span><span class="de-score">1.32</span>
-                        </td>
-                    </tr>
-                </table>
-                <table class="remd-list">
-                    <tr>
-                        <th colspan="2" class="th-orange">Fulltime Result</th>
-                    </tr>
-                    <tr>
-                        <td class="s bg" data-Bets="">
-                            <span class="de-score orange">1.32</span><span class="de-score">1.32</span>
-                        </td>
-                        <td class="s bg" data-Bets="">
-                            <span class="de-score">1.32</span><span class="de-score">1.32</span>
-                        </td>
-                    </tr>
-                </table>
-                <table class="remd-list">
-                    <tr>
-                        <th colspan="3" class="th-orange">Fulltime Result</th>
-                    </tr>
-                    <tr>
-                        <td class="score-td bg" data-Bets="" width="33.333333%">
-                            <span class="de-score orange">1.32</span><span class="de-score">1.32</span>
-                        </td>
-                        <td class="score-td bg" data-Bets="" width="33.333333%">
-                            <span class="de-score">Under</span><span class="de-score">1.32</span>
-                        </td>
-                        <td class="score-td bg" data-Bets="" width="33.333333%">
-                            <span class="de-score">Under</span><span class="de-score">1.32</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="score-td bg" data-Bets="">
-                            <span class="de-score orange">1.32</span><span class="de-score">1.32</span>
-                        </td>
-                        <td class="score-td bg" data-Bets="">
-                            <span class="de-score orange">1.32</span><span class="de-score">1.32</span>
-                        </td>
-                        <td class="score-td bg" data-Bets="">
-                            <span class="de-score orange">1.32</span><span class="de-score">1.32</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="score-td bg" data-Bets="">
-                            <span class="de-score orange">ANY OTHER</span><span class="de-score">1.32</span>
-                        </td>
-                    </tr>
-                    </tr>
-                </table>
-            </div> -->
-
-            <!-- 比赛结束 -->
             <div class="recommend">
+            {{? it.event.state == "1" || it.event.state == "5"}}
                 <div class="match-fin">
                     <img src="../public/images/finished.png">
                     <p>The Game is Finished</p>
                     <button type="button" class="btn width60 bets-btn">Back</button>
                 </div>
+            {{?? }}
+                {{? it.market100 && it.market100.selections.length}}
+                <table class="remd-list">
+                    <tr>
+                        <th colspan="3" class="th-orange">3 Way</th>
+                    </tr>
+                    <tr data-eventId="{{= it.event.eventId}}" data-homeTeamName="{{= it.event.homeTeamName}}" data-awayTeamName="{{= it.event.awayTeamName}}"   data-competitionName="{{= it.event.competitionName}}" >
+                        {{~ it.market100.selections :val:ind}}
+                        <td class="s bg able" width="33.333333%" data-Bets="" data-marketId="{{= it.market100.marketId}}" data-ruleType="{{= it.market100.ruleType}}" data-verifyResult="{{= it.market100.verifyResult}}" data-selectionId="{{= val.selectionId}}" data-maxStakeLimit="{{= val.maxStakeLimit}}" data-v1="{{= val.v1}}" data-v2="{{= val.v2}}" data-v3="{{= val.v3}}" data-backOdds="{{= val.backOdds}}">
+                            {{? ind==0}}
+                            <span class="de-score orange">home</span>
+                            {{?? ind==1}}
+                            <span class="de-score orange"></span>
+                            {{?? ind==2}}
+                            <span class="de-score orange">away</span>
+                            {{?}}
+                            <span class="de-score">{{= val.backOdds}}</span>
+                        </td>
+                        {{~}}
+                    </tr>
+                </table>
+                {{?}}
+                {{? it.market130 && it.market130.selections.length}}
+                <table class="remd-list">
+                    <tr>
+                        <th colspan="2" class="th-orange">Odd/Even</th>
+                    </tr>
+                    <tr data-eventId="{{= it.event.eventId}}"  data-homeTeamName="{{= it.event.homeTeamName}}" data-awayTeamName="{{= it.event.awayTeamName}}"   data-competitionName="{{= it.event.competitionName}}">
+                        {{~ it.market130.selections :val:ind}}
+                        <td class="s bg able" data-marketId="{{= it.market100.marketId}}" data-ruleType="{{= it.market100.ruleType}}" data-verifyResult="{{= it.market100.verifyResult}}" data-selectionId="{{= val.selectionId}}" data-maxStakeLimit="{{= val.maxStakeLimit}}" data-v1="{{= val.v1}}" data-v2="{{= val.v2}}" data-v3="{{= val.v3}}" data-backOdds="{{= val.backOdds}}">
+                            {{? ind==0}}
+                            <span class="de-score orange">odd</span>
+                            {{?? ind==1}}
+                            <span class="de-score orange">even</span>
+                            {{?}}
+                            <span class="de-score">{{= val.backOdds}}</span>
+                        </td>
+                        {{~}}
+                    </tr>
+                </table>
+                {{?}}
+
+                {{? it.market140 && it.market140.selections.length}}
+                <dl class="remd-list remd-dl" data-eventId="{{= it.event.eventId}}"  data-homeTeamName="{{= it.event.homeTeamName}}" data-awayTeamName="{{= it.event.awayTeamName}}"   data-competitionName="{{= it.event.competitionName}}">
+                    <dt class="th-orange remd-title">Correct Score</dt>
+                    {{~ it.market140.selections :val:ind}}
+                        <dd class="bg able" data-marketId="{{= it.market100.marketId}}" data-ruleType="{{= it.market100.ruleType}}" data-verifyResult="{{= it.market100.verifyResult}}" data-selectionId="{{= val.selectionId}}" data-maxStakeLimit="{{= val.maxStakeLimit}}" data-v1="{{= val.v1}}" data-v2="{{= val.v2}}" data-v3="{{= val.v3}}" data-backOdds="{{= val.backOdds}}">
+                            {{? ind==0}}
+                            <span class="de-score orange">胜其他</span>
+                            {{?? ind==1}}
+                            <span class="de-score orange">平其他</span>
+                            {{?? ind==2}}
+                            <span class="de-score orange">负其他</span>
+                            {{?? ind==3}}
+                            <span class="de-score orange">10001</span>
+                            {{?? ind==4}}
+                            <span class="de-score orange">10002</span>
+                            {{?? ind==5}}
+                            <span class="de-score orange">10003</span>
+                            {{?? ind==6}}
+                            <span class="de-score orange">10004</span>
+                            {{?? ind==7}}
+                            <span class="de-score orange">10005</span>
+                            {{?? ind==8}}
+                            <span class="de-score orange">10006</span>
+                            {{?? ind==9}}
+                            <span class="de-score orange">10007</span>
+                            {{?? ind==10}}
+                            <span class="de-score orange">20001</span>
+                            {{?? ind==11}}
+                            <span class="de-score orange">20002</span>
+                            {{?? ind==12}}
+                            <span class="de-score orange">20003</span>
+                            {{?? ind==13}}
+                            <span class="de-score orange">20004</span>
+                            {{?? ind==14}}
+                            <span class="de-score orange">20005</span>
+                            {{?? ind==15}}
+                            <span class="de-score orange">20006</span>
+                            {{?? ind==16}}
+                            <span class="de-score orange">20007</span>
+                            {{?? ind==17}}
+                            <span class="de-score orange">30001</span>
+                            {{?? ind==18}}
+                            <span class="de-score orange">30002</span>
+                            {{?? ind==19}}
+                            <span class="de-score orange">30003</span>
+                            {{?? ind==20}}
+                            <span class="de-score orange">30004</span>
+                            {{?? ind==21}}
+                            <span class="de-score orange">30005</span>
+                            {{?? ind==22}}
+                            <span class="de-score orange">30006</span>
+                            {{?? ind==23}}
+                            <span class="de-score orange">30007</span>
+                            {{?? ind==24}}
+                            <span class="de-score orange">40001</span>
+                            {{?? ind==25}}
+                            <span class="de-score orange">40002</span>
+                            {{?? ind==26}}
+                            <span class="de-score orange">40003</span>
+                            {{?? ind==27}}
+                            <span class="de-score orange">40004</span>
+                            {{?? ind==28}}
+                            <span class="de-score orange">40005</span>
+                            {{?? ind==29}}
+                            <span class="de-score orange">40006</span>
+                            {{?? ind==30}}
+                            <span class="de-score orange">50001</span>
+                            {{?? ind==31}}
+                            <span class="de-score orange">50002</span>
+                            {{?? ind==32}}
+                            <span class="de-score orange">50003</span>
+                            {{?? ind==33}}
+                            <span class="de-score orange">50004</span>
+                            {{?? ind==34}}
+                            <span class="de-score orange">50005</span>
+                            {{?? ind==35}}
+                            <span class="de-score orange">50006</span>
+                            {{?? ind==36}}
+                            <span class="de-score orange">50007</span>
+                            {{?? ind==37}}
+                            <span class="de-score orange">60001</span>
+                            {{?? ind==38}}
+                            <span class="de-score orange">60002</span>
+                            {{?? ind==39}}
+                            <span class="de-score orange">60003</span>
+                            {{?? ind==40}}
+                            <span class="de-score orange">60004</span>
+                            {{?? ind==41}}
+                            <span class="de-score orange">60005</span>
+                            {{?? ind==42}}
+                            <span class="de-score orange">60006</span>
+                            {{?? ind==43}}
+                            <span class="de-score orange">60007</span>
+                            {{?? ind==44}}
+                            <span class="de-score orange">70001</span>
+                            {{?? ind==45}}
+                            <span class="de-score orange">70002</span>
+                            {{?? ind==46}}
+                            <span class="de-score orange">70003</span>
+                            {{?? ind==47}}
+                            <span class="de-score orange">70004</span>
+                            {{?? ind==48}}
+                            <span class="de-score orange">70005</span>
+                            {{?? ind==49}}
+                            <span class="de-score orange">70006</span>
+                            {{?? ind==50}}
+                            <span class="de-score orange">70007</span>
+                            {{?}}
+                            <span class="de-score">{{= val.backOdds}}</span>
+                        </dd>
+                    {{~}}
+                </dl>
+                {{?}}
+                {{? it.market350 && it.market350.selections.length}}
+                <dl class="remd-list remd-dl" data-eventId="{{= it.event.eventId}}"  data-homeTeamName="{{= it.event.homeTeamName}}" data-awayTeamName="{{= it.event.awayTeamName}}"   data-competitionName="{{= it.event.competitionName}}">
+                    <dt class="th-orange remd-title">Next Team To Score</dt>
+                    {{~ it.market350.selections :val:ind}}
+                    <dd class="bg able" data-marketId="{{= it.market100.marketId}}" data-ruleType="{{= it.market100.ruleType}}" data-verifyResult="{{= it.market100.verifyResult}}" data-selectionId="{{= val.selectionId}}" data-maxStakeLimit="{{= val.maxStakeLimit}}" data-v1="{{= val.v1}}" data-v2="{{= val.v2}}" data-v3="{{= val.v3}}" data-backOdds="{{= val.backOdds}}">
+                        {{? ind==0}}
+                        <span class="de-score orange">客队</span>
+                        {{?? ind==1}}
+                        <span class="de-score orange">未发生</span>
+                        {{?? ind==2}}
+                        <span class="de-score orange">主队</span>
+                        {{?}}
+                        <span class="de-score">{{= val.backOdds}}</span>
+                    </dd>
+                    {{~}}
+                </dl>
+                {{?}}
+                {{? it.market410 && it.market410.selections.length}}
+                <dl class="remd-list remd-dl" data-eventId="{{= it.event.eventId}}"  data-homeTeamName="{{= it.event.homeTeamName}}" data-awayTeamName="{{= it.event.awayTeamName}}"   data-competitionName="{{= it.event.competitionName}}">
+                    <dt class="th-orange remd-title">Total Goals Exactly</dt>
+                    {{~ it.market410.selections :val:ind}}
+                    <dd class="bg able" data-marketId="{{= it.market100.marketId}}" data-ruleType="{{= it.market100.ruleType}}" data-verifyResult="{{= it.market100.verifyResult}}" data-selectionId="{{= val.selectionId}}" data-maxStakeLimit="{{= val.maxStakeLimit}}" data-v1="{{= val.v1}}" data-v2="{{= val.v2}}" data-v3="{{= val.v3}}" data-backOdds="{{= val.backOdds}}">
+                        {{? ind==0}}
+                        <span class="de-score orange">1个</span>
+                        {{?? ind==1}}
+                        <span class="de-score orange">2个</span>
+                        {{?? ind==2}}
+                        <span class="de-score orange">3个</span>
+                        {{?? ind==3}}
+                        <span class="de-score orange">4个</span>
+                        {{?? ind==4}}
+                        <span class="de-score orange">5个</span>
+                        {{?? ind==5}}
+                        <span class="de-score orange">6个</span>
+                        {{?? ind==6}}
+                        <span class="de-score orange">7个</span>
+                        {{?}}
+                        <span class="de-score">{{= val.backOdds}}</span>
+                    </dd>
+                    {{~}}
+                </dl>
+                {{?}}
+
+            {{?}}
             </div>
-        </div>
+        </script>
+
+
     </div>
 
 
     <script type="text/javascript" src="../public/scripts/vendor/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="../public/scripts/vendor/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../public/scripts/vendor/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../public/scripts/vendor/doT.min.js"></script>
     <script type="text/javascript" src="../public/scripts/common.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-
+            var eventId = $.getQueryString('eventId');
+            $.ajax({
+                type: 'get',
+                url: apiDomain + '/order/getMarketList?' + new Date().getTime(),
+                dataType: "json",
+                cache: false,
+                data: {eventId: eventId,evented: 1,enabled: 0},
+                success: function (data) {
+                    console.log(data);
+                    if (data.code == "0") {
+//                  渲染模版
+                        var tpl = doT.template($("#tpl-raceDetail").html());
+                        $("#res-raceDetail").html(tpl(data.results));
+                    } else {
+                        //简单提示框
+                        $.blt(data.msg);
+                    }
+                }
+            })
         })
 
     </script>

@@ -9,7 +9,7 @@ function loaded() {
 	//动画部分
 	pullDownEl = document.getElementById('pullDown');
 	pullDownOffset = pullDownEl.offsetHeight;
-	pullUpEl = document.getElementById('pullUp');	
+	pullUpEl = document.getElementById('pullUp');
 	pullUpOffset = pullUpEl.offsetHeight;
 	myScroll = new iScroll('wrapper', {
 		useTransition: true,

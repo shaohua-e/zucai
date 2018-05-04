@@ -31,7 +31,6 @@
                         <li><a href="index.html">HOME <i class="fa fa-chevron-right"></i></a></li>
                         <li><a href="allGame.html">ALL GAMES <i class="fa fa-chevron-right"></i></a></li>
                         <li><a href="#">FOLLOW ORDER <i class="fa fa-chevron-right"></i></a></li>
-                        <li><a href="#">NEWS <i class="fa fa-chevron-right"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -55,8 +54,8 @@
                 <div class="clearfix"></div>
             </div>
             <div class="banner">
-                <div class="swiper-container" id="res-banner">
-                    <div class="swiper-wrapper"></div>
+                <div class="swiper-container">
+                    <div class="swiper-wrapper" id="res-banner"></div>
                     <script type="text/template" charset="utf-8" id="tpl-banner">
                         {{? it.length}}
                             {{~ it:value:index}}
@@ -88,7 +87,7 @@
                                 <td class="left d">
                                     <span class="ds">{{= key.homeTeamName}}</span>
                                     <span class="ds">{{= key.awayTeamName}}</span>
-                                    <a href="race-detail.html">
+                                    <a href="race-detail.html?eventId={{= key.eventId}}">
                                         <em>{{= $.dateFmt(key.eventTime, "hh:mm")}}</em> <span class="block">{{= key.marketCount}}</span> <i class="fa fa-chevron-right"></i>
                                     </a>
                                 </td>
@@ -98,7 +97,7 @@
                                 </td>
                                 {{? key.market}}
                                     {{~ key.market.selections :v:i}}
-                                        <td class="s orange bg able" data-marketId="{{= key.market.marketId}}" data-verifyResult="{{= key.market.verifyResult}}" data-selectionId="{{= v.selectionId}}" data-maxStakeLimit="{{= v.maxStakeLimit}}" data-v1="{{= v.v1}}" data-v2="{{= v.v2}}" data-v3="{{= v.v3}}" >{{= v.backOdds}}</td>
+                                        <td class="s orange bg able" data-marketId="{{= key.market.marketId}}" data-ruleType="{{= key.market.ruleType}}" data-verifyResult="{{= key.market.verifyResult}}" data-selectionId="{{= v.selectionId}}" data-maxStakeLimit="{{= v.maxStakeLimit}}" data-v1="{{= v.v1}}" data-v2="{{= v.v2}}" data-v3="{{= v.v3}}" data-backOdds="{{= v.backOdds}}">{{= v.backOdds}}</td>
                                     {{~}}
                                 {{??}}
                                     <td class="s orange bg dis">&nbsp;</td>
@@ -200,6 +199,7 @@
 
     <script type="text/javascript" src="../public/scripts/vendor/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="../public/scripts/vendor/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../public/scripts/vendor/jquery.cookie.js"></script>
     <!-- 侧边栏控制开关 -->
     <script type="text/javascript" src="../public/scripts/vendor/bigSlide.js"></script>
     <!--  轮播图-->

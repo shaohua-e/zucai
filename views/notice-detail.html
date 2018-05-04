@@ -29,66 +29,45 @@
                 </div>
                 <div class="Profile-mid logo">
                     <h1>
-                        <span class="link link--yaku">Transfer Details</span>
+                        <span class="link link--yaku">Notice</span>
                     </h1>
                 </div>
                 <div class="clearfix"></div>
             </div>
             <div class="usercenter">
-                <ul class="oper-list">
-                    <li class="re-li">
-                        <div class="pull-left">
-                            <p class="t">Recharge Detail </p>
-                            <p class="p">2017-12-14 00:30</p>
-                        </div>
-                        <div class="pull-right right">
-                            <strong class="orange">1,000.00</strong><br />
-                            <span>Successful</span>
-                        </div>
+                <div class="notice-de">
+                    <h5>2222</h5>
+                    <p class="p">2018-05-18 6:30</p>
+                    <p>There are a few different stylesheets included in the library. This is an overview of what each file is to be used for:</p>
+                </div>
 
-                    </li>
-                    <li class="re-li">
-                        <div class="pull-left">
-                            <p class="t">Recharge Detail </p>
-                            <p class="p">2017-12-14 00:30</p>
-                        </div>
-                        <div class="pull-right right">
-                            <strong class="orange">1,000.00</strong><br />
-                            <span class="red">In Review</span>
-                        </div>
-                    </li>
-                </ul>
+
             </div>
         </div>
     </div>
 
-
-
-
-
-
-
-
-
-
-
     <script type="text/javascript" src="../public/scripts/vendor/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="../public/scripts/vendor/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../public/scripts/vendor/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../public/scripts/vendor/doT.min.js"></script>
     <script type="text/javascript" src="../public/scripts/common.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function() {
+            $.ajax({
+                type: 'get',
+                url: apiDomain + '/messageInfo/findAllMessageInfo?' + new Date().getTime(),
+                dataType: "json",
+                cache: false,
+                data: {userId: $.cookie('userId')},
+                success: function (data) {
+                    if (data.code == "0") {
+                        var tpl = doT.template($("#tpl-notice").html());
+                        $("#res-notice").html(tpl(data.results));
+                    } else {
 
-
-            //忘记密码
-            $('body').on('click', '.reset', function(){
-                $('#login').modal('hide');
-                $('#reset').modal('show');
-            })
-            //注册
-            $('body').on('click', '.logup', function(){
-                $('#login').modal('hide');
-                $('#logup').modal('show');
+                    }
+                }
             })
         });
 

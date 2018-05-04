@@ -25,7 +25,7 @@
         <div class="phone-box wrap push">
             <div id="home" class="menu-notify">
                 <div class="profile-left">
-                    <a href="#menu" class="menu-link"><i class="fa fa-chevron-left"></i></a>
+                    <a href="javascript:history.go(-1);" class="menu-link"><i class="fa fa-chevron-left"></i></a>
                 </div>
                 <div class="Profile-mid logo">
                     <h1>
@@ -35,49 +35,45 @@
                 <div class="clearfix"></div>
             </div>
             <div class="usercenter">
-                <ul class="oper-list">
-                    <li class="re-notice">
-                        <h5>Club News</h5>
-                        <p>We have been automatically notified of the issue.We're sorry for any inconvenience this might have caused.</p>
-                        <span class="p">2018-04-12 13:23:45</span>
-                    </li>
-                    <li class="re-notice">
-                        <h5>Club News</h5>
-                        <p>We have been automatically notified of the issue.We're sorry for any inconvenience this might have caused.</p>
-                        <span class="p">2018-04-12 13:23:45</span>
-                    </li>
-                </ul>
+                <ul class="oper-list" id="res-notice"></ul>
+                <script type="text/template" charset="utf-8" id="tpl-notice">
+                    {{? it.length}}
+                    {{~ it:value:index}}
+                        <li class="re-notice">
+                            <a ></a>
+                            <h5>{{= value.title}}</h5>
+                            <p>{{= value.content}}</p>
+                            <span class="p">{{= $.dateFmt(value.createTime, "yyyy-MM-dd hh:mm")}}</span>
+                        </li>
+                    {{~}}
+                    {{?}}
+                </script>
             </div>
         </div>
     </div>
 
-
-
-
-
-
-
-
-
-
-
     <script type="text/javascript" src="../public/scripts/vendor/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="../public/scripts/vendor/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../public/scripts/vendor/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../public/scripts/vendor/doT.min.js"></script>
     <script type="text/javascript" src="../public/scripts/common.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function() {
+            $.ajax({
+                type: 'get',
+                url: apiDomain + '/messageInfo/findAllMessageInfo?' + new Date().getTime(),
+                dataType: "json",
+                cache: false,
+                data: {userId: $.cookie('userId')},
+                success: function (data) {
+                    if (data.code == "0") {
+                        var tpl = doT.template($("#tpl-notice").html());
+                        $("#res-notice").html(tpl(data.results));
+                    } else {
 
-
-            //忘记密码
-            $('body').on('click', '.reset', function(){
-                $('#login').modal('hide');
-                $('#reset').modal('show');
-            })
-            //注册
-            $('body').on('click', '.logup', function(){
-                $('#login').modal('hide');
-                $('#logup').modal('show');
+                    }
+                }
             })
         });
 

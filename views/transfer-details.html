@@ -14,9 +14,6 @@
     <link rel="stylesheet" href="../public/styles/bootstrap.min.css">
     <!--custom css-->
     <link rel="stylesheet" href="../public/styles/jquery-ui.css" />
-    <!-- 日期选择 -->
-    <link rel="stylesheet" href="../public/styles/bootstrap-datepicker.min.css" />
-
     <link rel="stylesheet" type="text/css" href="../public/styles/index.css" />
     <link rel="stylesheet" href="../public/styles/common.css">
 
@@ -32,55 +29,96 @@
                 </div>
                 <div class="Profile-mid logo">
                     <h1>
-                        <span class="link link--yaku">Transfer Details</span>
+                        <span class="link transfer-title"></span>
                     </h1>
                 </div>
                 <div class="clearfix"></div>
             </div>
             <div class="usercenter">
-                <div class="transfer-search input-daterange">
-                    <h5>Check the Recharge Detail </h5>
-                    <form action="">
-                        <div class="form-group">
-                            <label for="">From</label><input type="text" class="form-control" readonly id="" value="2018-04-23" name="start" >
+                <ul class="oper-list" id="res-transfer"></ul>
+                <script type="text/template" charset="utf-8" id="tpl-recharge">
+                    {{? it.length}}
+                    {{~ it:value:index}}
+                    <li class="re-li">
+                        <div class="pull-left">
+                            <p class="t">Recharge Detail </p>
+                            <p class="p">{{= $.dateFmt(value.createTime, "yyyy-MM-dd hh:mm")}}</p>
                         </div>
-                        <div class="form-group">
-                            <label for="">To</label><input type="text" class="form-control"  readonly id="" placeholder="Year-Month-Day" name="end">
+                        <div class="pull-right right">
+                            <strong class="orange">{{= value.rechargeMoney}}</strong><br />
+                            {{? value.rechargeState == "0"}}
+                                <span class="red">In Review</span>
+                            {{?? value.rechargeState == "1"}}
+                                <span>Successful</span>
+                            {{?}}
                         </div>
-                        <button type="button" class="btn bets-btn">Confirm</button>
-                    </form>
-                </div>
-                <!-- 搜索结果列表 -->
-                <!--<ul class="oper-list">-->
-                    <!--<li><a href="recharge-details.html" class="lh">Recharge Detail <i class="fa fa-chevron-right pull-right"></i></a></li>-->
-                    <!--<li><a href="recharge-details.html" class="lh">Withdraw Detail <i class="fa fa-chevron-right pull-right"></i></a></li>-->
-                <!--</ul>-->
+                    </li>
+                    {{~}}
+                    {{?}}
+                </script>
+                <script type="text/template" charset="utf-8" id="tpl-withdrew">
+                    {{? it.length}}
+                    {{~ it:value:index}}
+                    <li class="re-li">
+                        <div class="pull-left">
+                            <p class="t">Withdrew Detail </p>
+                            <p class="p">{{= $.dateFmt(value.createTime, "yyyy-MM-dd hh:mm")}}</p>
+                        </div>
+                        <div class="pull-right right">
+                            <strong class="orange">{{= value.cashMoney}}</strong><br />
+                            {{? value.cashState == "0"}}
+                            <span class="red">In Review</span>
+                            {{?? value.cashState == "1"}}
+                            <span>Successful</span>
+                            {{?}}
+                        </div>
+                    </li>
+                    {{~}}
+                    {{?}}
+                </script>
             </div>
         </div>
     </div>
 
 
 
-
-
-
-
-
-
-
-
     <script type="text/javascript" src="../public/scripts/vendor/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="../public/scripts/vendor/bootstrap.min.js"></script>
-    <!-- 时间插件 -->
-    <script type="text/javascript" src="../public/scripts/vendor/bootstrap-datepicker.min.js"></script>
+    <script type="text/javascript" src="../public/scripts/vendor/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../public/scripts/vendor/doT.min.js"></script>
     <script type="text/javascript" src="../public/scripts/common.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function() {
-            // 日期选择
-            $('.input-daterange').datepicker({
-                startDate: '-3d'
-            });
+            var t1 = $.cookie('t1');
+            var t2 = $.cookie('t2');
+            var flag = $.cookie('flag');
+            $.ajax({
+                type: 'get',
+                url: apiDomain + '/rechargeInfo/findAllRechargeInfo?' + new Date().getTime(),
+                dataType: "json",
+                cache: false,
+                data: {userId: $.cookie('userId'), staTime: t1, endTime: t2, flag: flag},
+                success: function (data) {
+                    if (data.code == "0") {
+                        if(flag == "2"){
+                            // 渲染充值
+                            var tpl = doT.template($("#tpl-recharge").html());
+                            $("#res-transfer").html(tpl(data.results.rechargeInfoList));
+                            $('.transfer-title').html('Recharge Details');
+                        }else if(flag == "3"){
+                            // 渲染提现
+                            var tpl = doT.template($("#tpl-withdrew").html());
+                            $("#res-transfer").html(tpl(data.results.cashInfoList));
+                            $('.transfer-title').html('Withdrew Details');
+                        }
+
+                    } else {
+
+                    }
+                }
+            })
+
         });
 
     </script>

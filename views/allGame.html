@@ -52,282 +52,109 @@
             <!-- 横向导航 -->
             <div id="wrapperX" class="wrapper">
                 <div id="scrollerX" class="scroller">
-                    <ul class="match-menu">
-                        <li class="active" data-tid="0">Highlights</li>
-                        <li data-tid="1">Top 5 Leagues</li>
-                        <li data-tid="2">Countries</li>
-                        <li data-tid="3">The World Cups</li>
-                        <li data-tid="4">The World Cups</li>
-                        <li data-tid="5">The World Cups</li>
-                    </ul>
+                    <ul class="match-menu" id="res-tabList"></ul>
+                    <script type="text/template" charset="utf-8" id="tpl-tabList">
+                        {{? it.length}}
+                            {{~ it:value:index}}
+                                <li data-tid="{{= value.tabId}}" data-tabType="{{= value.tabType}}">{{= value.tabName}}</li>
+                            {{~}}
+                        {{?}}
+                    </script>
                 </div>
             </div>
             <!-- recommend -->
-            <div id="wrapper">
+            <div id="res-tabData" class="recommend"></div>
+            <script type="text/template" charset="utf-8" id="tpl-tabData0">
+                <ul class="country-list">
+                    {{? it.length}}
+                    {{~ it :value:index}}
+                    <li><a href="javascript:;" data-competitionTab="{{= value.competitionTab}}" data-competitionId="{{= value.competitionId}}">{{= value.competitionName}}<i class="fa fa-chevron-right pull-right"></i></a></li>
+                    {{~}}
+                    {{?}}
+                </ul>
+            </script>
+            <script type="text/template" charset="utf-8" id="tpl-tabData1">
+                {{? it.length}}
+                {{~ it :value:index}}
+                <table class="remd-list">
+                    <tr>
+                        <th width="5">&nbsp;</th>
+                        <th width="30%" class="left">{{= value.competitionName}}</th>
+                        <th width="15%">Result</th>
+                        <th width="17%">1</th>
+                        <th width="16%">X</th>
+                        <th width="17%">2</th>
+                    </tr>
+                    {{~ value.events: key:ind}}
+                    <tr data-eventId="{{= key.eventId}}"  data-homeTeamName="{{= key.homeTeamName}}" data-awayTeamName="{{= key.awayTeamName}}"   data-competitionName="{{= value.competitionName}}" >
+                        <td>&nbsp;</td>
+                        <td class="left d">
+                            <span class="ds">{{= key.homeTeamName}}</span>
+                            <span class="ds">{{= key.awayTeamName}}</span>
+                            <a href="race-detail.html">
+                                <em>{{= $.dateFmt(key.eventTime, "hh:mm")}}</em> <span class="block">{{= key.marketCount}}</span> <i class="fa fa-chevron-right"></i>
+                            </a>
+                        </td>
+                        <td class="d orange">
+                            <span class="ds">{{= key.homeTeamScore}}</span>
+                            <span class="ds">{{= key.awayTeamScore}}</span>
+                        </td>
+                        {{? key.market}}
+                        {{~ key.market.selections :v:i}}
+                        <td class="s orange bg able" data-marketId="{{= key.market.marketId}}" data-ruleType="{{= key.market.ruleType}}" data-verifyResult="{{= key.market.verifyResult}}" data-selectionId="{{= v.selectionId}}" data-maxStakeLimit="{{= v.maxStakeLimit}}" data-v1="{{= v.v1}}" data-v2="{{= v.v2}}" data-v3="{{= v.v3}}" data-backOdds="{{= v.backOdds}}">{{= v.backOdds}}</td>
+                        {{~}}
+                        {{??}}
+                        <td class="s orange bg dis">&nbsp;</td>
+                        <td class="s orange bg dis">&nbsp;</td>
+                        <td class="s orange bg dis">&nbsp;</td>
+                        {{?}}
+                    </tr>
+                    {{~}}
+                </table>
+                {{~}}
+                {{?}}
+            </script>
+
+            <script type="text/template" charset="utf-8" id="tpl-tabData2">
+                <ul class="country-list">
+                    {{? it.length}}
+                    {{~ it :value:index}}
+                    <li><a href="javascript:;" data-country_id="{{= value.country_id}}" data-competition_id="{{= value.competition_id}}">{{= value.country_name_zh}}<i class="fa fa-chevron-right pull-right"></i></a></li>
+                    {{~}}
+                    {{?}}
+                </ul>
+            </script>
+
+
+
+
+            <!-- <div id="wrapper">
                 <div id="scroller">
                     <div id="pullDown" class="">
                         <span class="pullDownLabel">下拉刷新</span>
                     </div>
-                    <div id="thelist" class="recommend">
-                        <table class="remd-list">
-                            <tr>
-                                <th width="5">&nbsp;</th>
-                                <th width="30%" class="left">Italy Serie B</th>
-                                <th width="15%">Result</th>
-                                <th width="17%">1</th>
-                                <th width="16%">X</th>
-                                <th width="17%">2</th>
-                            </tr>
-                            <tr>
-                                <td>&nbsp;</td>
-                                <td class="left d">
-                                    <span class="ds">Foggia</span>
-                                    <span class="ds">Empoli</span>
-                                    <a href="">
-                                        <em>20:00</em> <span class="block">5 </span> <i class="fa fa-chevron-right"></i>
-                                    </a>
-                                </td>
-                                <td class="d orange">
-                                    <span class="ds">0</span>
-                                    <span class="ds">0</span>
-                                </td>
-                                <td class="s orange bg able" data-Bets="">1.32</td>
-                                <td class="s orange bg able" data-Bets="">2.3</td>
-                                <td class="s orange bg able" data-Bets="">0.6</td>
-                            </tr>
-                            <tr>
-                                <td>&nbsp;</td>
-                                <td class="left d">
-                                    <span class="ds">Foggia</span>
-                                    <span class="ds">Empoli</span>
-                                    <a href="">
-                                        <em>20:00</em> <span class="block">5 </span> <i class="fa fa-chevron-right"></i>
-                                    </a>
-                                </td>
-                                <td class="d orange">
-                                    <span class="ds">0</span>
-                                    <span class="ds">0</span>
-                                </td>
-                                <td class="s orange bg able" data-Bets="">1.32</td>
-                                <td class="s orange bg able" data-Bets="">2.3</td>
-                                <td class="s orange bg able" data-Bets="">0.6</td>
-                            </tr>
-                        </table>
-                        <table class="remd-list">
-                            <tr>
-                                <th width="5">&nbsp;</th>
-                                <th width="30%" class="left">Italy Serie B</th>
-                                <th width="15%">Result</th>
-                                <th width="17%">1</th>
-                                <th width="16%">X</th>
-                                <th width="17%">2</th>
-                            </tr>
-                            <tr>
-                                <td>&nbsp;</td>
-                                <td class="left d">
-                                    <span class="ds">Foggia</span>
-                                    <span class="ds">Empoli</span>
-                                    <a href="">
-                                        <em>20:00</em> <span class="block">5 </span> <i class="fa fa-chevron-right"></i>
-                                    </a>
-                                </td>
-                                <td class="d orange">
-                                    <span class="ds">0</span>
-                                    <span class="ds">0</span>
-                                </td>
-                                <td class="s orange bg able" data-Bets="">1.32</td>
-                                <td class="s orange bg able" data-Bets="">2.3</td>
-                                <td class="s orange bg able" data-Bets="">0.6</td>
-                            </tr>
-                            <tr>
-                                <td>&nbsp;</td>
-                                <td class="left d">
-                                    <span class="ds">Foggia</span>
-                                    <span class="ds">Empoli</span>
-                                    <a href="">
-                                        <em>20:00</em> <span class="block">5 </span> <i class="fa fa-chevron-right"></i>
-                                    </a>
-                                </td>
-                                <td class="d gary">
-                                    <span class="ds">--</span>
-                                    <span class="ds">--</span>
-                                </td>
-                                <td class="s orange bg able" data-Bets="">1.32</td>
-                                <td class="s orange bg able" data-Bets="">2.3</td>
-                                <td class="s orange bg able" data-Bets="">0.6</td>
-                            </tr>
-                            <tr>
-                                <td>&nbsp;</td>
-                                <td class="left d">
-                                    <span class="ds">Foggia</span>
-                                    <span class="ds">Empoli</span>
-                                    <a href="">
-                                        <em>20:00</em> <span class="block">5 </span> <i class="fa fa-chevron-right"></i>
-                                    </a>
-                                </td>
-                                <td class="d gary">
-                                    <span class="ds">--</span>
-                                    <span class="ds">--</span>
-                                </td>
-                                <td class="s orange bg able" data-Bets="">1.32</td>
-                                <td class="s orange bg able" data-Bets="">2.3</td>
-                                <td class="s orange bg able" data-Bets="">0.6</td>
-                            </tr>
-                            <tr>
-                                <td>&nbsp;</td>
-                                <td class="left d">
-                                    <span class="ds">Foggia</span>
-                                    <span class="ds">Empoli</span>
-                                    <a href="">
-                                        <em>20:00</em> <span class="block">5 </span> <i class="fa fa-chevron-right"></i>
-                                    </a>
-                                </td>
-                                <td class="d gary">
-                                    <span class="ds">--</span>
-                                    <span class="ds">--</span>
-                                </td>
-                                <td class="s orange bg able" data-Bets="">1.32</td>
-                                <td class="s orange bg able" data-Bets="">2.3</td>
-                                <td class="s orange bg able" data-Bets="">0.6</td>
-                            </tr>
-                            <tr>
-                                <td>&nbsp;</td>
-                                <td class="left d">
-                                    <span class="ds">Foggia</span>
-                                    <span class="ds">Empoli</span>
-                                    <a href="">
-                                        <em>20:00</em> <span class="block">5 </span> <i class="fa fa-chevron-right"></i>
-                                    </a>
-                                </td>
-                                <td class="d gary">
-                                    <span class="ds">--</span>
-                                    <span class="ds">--</span>
-                                </td>
-                                <td class="s orange bg able" data-Bets="">1.32</td>
-                                <td class="s orange bg able" data-Bets="">2.3</td>
-                                <td class="s orange bg able" data-Bets="">0.6</td>
-                            </tr>
-                            <tr>
-                                <td>&nbsp;</td>
-                                <td class="left d">
-                                    <span class="ds">Foggia</span>
-                                    <span class="ds">Empoli</span>
-                                    <a href="">
-                                        <em>20:00</em> <span class="block">5 </span> <i class="fa fa-chevron-right"></i>
-                                    </a>
-                                </td>
-                                <td class="d gary">
-                                    <span class="ds">--</span>
-                                    <span class="ds">--</span>
-                                </td>
-                                <td class="s orange bg able" data-Bets="">1.32</td>
-                                <td class="s orange bg able" data-Bets="">2.3</td>
-                                <td class="s orange bg able" data-Bets="">0.6</td>
-                            </tr>
-                            <tr>
-                                <td>&nbsp;</td>
-                                <td class="left d">
-                                    <span class="ds">Foggia</span>
-                                    <span class="ds">Empoli</span>
-                                    <a href="">
-                                        <em>20:00</em> <span class="block">5 </span> <i class="fa fa-chevron-right"></i>
-                                    </a>
-                                </td>
-                                <td class="d gary">
-                                    <span class="ds">--</span>
-                                    <span class="ds">--</span>
-                                </td>
-                                <td class="s orange bg able" data-Bets="">1.32</td>
-                                <td class="s orange bg able" data-Bets="">2.3</td>
-                                <td class="s orange bg able" data-Bets="">0.6</td>
-                            </tr>
-                            <tr>
-                                <td>&nbsp;</td>
-                                <td class="left d">
-                                    <span class="ds">Foggia</span>
-                                    <span class="ds">Empoli</span>
-                                    <a href="">
-                                        <em>20:00</em> <span class="block">5 </span> <i class="fa fa-chevron-right"></i>
-                                    </a>
-                                </td>
-                                <td class="d gary">
-                                    <span class="ds">--</span>
-                                    <span class="ds">--</span>
-                                </td>
-                                <td class="s orange bg able" data-Bets="">1.32</td>
-                                <td class="s orange bg able" data-Bets="">2.3</td>
-                                <td class="s orange bg able" data-Bets="">0.6</td>
-                            </tr>
-                            <tr>
-                                <td>&nbsp;</td>
-                                <td class="left d">
-                                    <span class="ds">Foggia</span>
-                                    <span class="ds">Empoli</span>
-                                    <a href="">
-                                        <em>20:00</em> <span class="block">5 </span> <i class="fa fa-chevron-right"></i>
-                                    </a>
-                                </td>
-                                <td class="d gary">
-                                    <span class="ds">--</span>
-                                    <span class="ds">--</span>
-                                </td>
-                                <td class="s orange bg able" data-Bets="">1.32</td>
-                                <td class="s orange bg able" data-Bets="">2.3</td>
-                                <td class="s orange bg able" data-Bets="">0.6</td>
-                            </tr>
-                        </table>
-                    </div>
+                        内容部分
                     <div id="pullUp" class="">
                         <span class="pullUpLabel">上拉加载更多</span>
                     </div>
                 </div>
-            </div>
+            </div> -->
+
         </div>
     </div>
 
     <script type="text/javascript" src="../public/scripts/vendor/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="../public/scripts/vendor/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../public/scripts/vendor/jquery.cookie.js"></script>
     <!-- 侧边栏控制开关 -->
     <script type="text/javascript" src="../public/scripts/vendor/bigSlide.js"></script>
     <!-- 上拉加载 下拉刷新 iscroll4-->
     <script type="text/javascript" src="../public/scripts/vendor/iscroll.js"></script>
     <!--　布局滚动 iscroll4-->
-    <script type="text/javascript" src="../public/scripts/vendor/iscroll4.2.js"></script>
-    <script type="text/javascript" src="../public/scripts/main.js"></script>
+    <!--<script type="text/javascript" src="../public/scripts/vendor/iscroll4.2.js"></script>-->
+    <!--<script type="text/javascript" src="../public/scripts/main.js"></script>-->
+    <script type="text/javascript" src="../public/scripts/vendor/doT.min.js"></script>
     <script type="text/javascript" src="../public/scripts/common.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            //侧边栏控制
-            $('.menu-link').bigSlide();
-
-            //初始化
-            var p = 0,
-                tid = 0;
-            getInfo(0);
-            $('.match-menu').on('click', '[data-tid]', function(){
-                var tid = $(this).data('tid');
-                $(this).addClass('active').siblings().removeClass('active');
-                getInfo(tid, p);
-            })
-            //请求数据
-            function getInfo(tid, p){
-
-            }
-
-
-            /*布局滚动*/
-            var w = 0;
-            $('.match-menu li').each(function (index, item) {
-                w += $(item).outerWidth(true);
-            })
-            $('#scrollerX').css('width', w + 5);
-            var myScrollX = new IScroll('#wrapperX', {
-                eventPassthrough: true,
-                scrollX: true,
-                scrollY: false,
-                preventDefault: false
-            })
-    })
-    </script>
+    <script type="text/javascript" src="../public/scripts/allGame.js"></script>
 </body>
 </html>
