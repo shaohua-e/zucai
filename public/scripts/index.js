@@ -113,9 +113,11 @@ var Index = {
                     $('#login').modal('hide');
                     $.cookie('userId',data.results.userId);
                     $.cookie('accountId',data.results.userAccountId);
+                    $.cookie('userReadMessageState',data.results.userReadMessageState);
                 } else {
                     //简单提示
-                    $.blt(data.msg);
+                    $('#login').modal('hide');
+                    $('#login-fail').modal('show');
                 }
             }
         })
@@ -149,5 +151,17 @@ $(document).ready(function() {
         Index.login();
     })
 
+    if($.cookie('userId')){
+        $('.sign-btn').hide();
+        $('.toUser').show();
+    }else {
+        $('.sign-btn').show();
+        $('.toUser').hide();
+    }
 
+    if($.cookie('userReadMessageState')=="0"){
+        $('.news-tip').show();
+    }else{
+        $('.news-tip').hide();
+    }
 });

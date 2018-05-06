@@ -40,10 +40,11 @@
                     {{? it.length}}
                     {{~ it:value:index}}
                         <li class="re-notice">
-                            <a ></a>
-                            <h5>{{= value.title}}</h5>
-                            <p>{{= value.content}}</p>
-                            <span class="p">{{= $.dateFmt(value.createTime, "yyyy-MM-dd hh:mm")}}</span>
+                            <a href="notice-detail.html?messageId={{= value.messageId}}">
+                                <h5>{{= value.title}}</h5>
+                                <p>{{= value.content}}</p>
+                                <span class="p">{{= $.dateFmt(value.createTime, "yyyy-MM-dd hh:mm")}}</span>
+                            </a>
                         </li>
                     {{~}}
                     {{?}}

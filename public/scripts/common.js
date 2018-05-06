@@ -152,7 +152,7 @@ $.extend({
                                     '<h5>'+ txt +'</h5>'+
                                 '</div>'+
                                 '<div class="modal-footer betSuc-footer">'+
-                                    '<button type="button" data-dismiss="modal" class="btn blt-close">OK</button>'+
+                                    '<button type="button" data-dismiss="modal" class="btn login-btn blt-close">OK</button>'+
                                 '</div>'+
                             '</div>'+
                         '</div>'+
@@ -269,4 +269,6 @@ $('body').on('click', '.bets-submit', function () {
 })
 
 $('body').css('min-height', $(window).height());
+
+
 
