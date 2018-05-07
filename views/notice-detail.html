@@ -53,12 +53,13 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
+            var messageId = $.getQueryString('messageId');
             $.ajax({
                 type: 'get',
-                url: apiDomain + '/messageInfo/findAllMessageInfo?' + new Date().getTime(),
+                url: apiDomain + '/messageInfo/findMessageInfo?' + new Date().getTime(),
                 dataType: "json",
                 cache: false,
-                data: {userId: $.cookie('userId')},
+                data: {messageId: messageId},
                 success: function (data) {
                     if (data.code == "0") {
                         var tpl = doT.template($("#tpl-detail").html());

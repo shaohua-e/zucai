@@ -111,9 +111,13 @@ var Index = {
             success: function (data) {
                 if (data.code == "0") {
                     $('#login').modal('hide');
-                    $.cookie('userId',data.results.userId);
-                    $.cookie('accountId',data.results.userAccountId);
-                    $.cookie('userReadMessageState',data.results.userReadMessageState);
+                    $.cookie('userId',data.results.userId, { expires: 1, path: '/' });
+                    $.cookie('userPhone',data.results.userPhone, { expires: 1, path: '/' });
+                    $.cookie('accountId',data.results.userAccountId, { expires: 1, path: '/' });
+                    $.cookie('userReadMessageState',data.results.userReadMessageState, { expires: 1, path: '/' });
+
+                    $('.sign-btn').hide();
+                    $('.toUser').show();
                 } else {
                     //简单提示
                     $('#login').modal('hide');

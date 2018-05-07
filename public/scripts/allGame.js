@@ -62,7 +62,6 @@ var AllGame = {
                 console.log(data);
                 if (data.code == "0") {
 //                  渲染模版
-
                     if(obj.tabType == "0"){
                         var tpl = doT.template($("#tpl-tabData0").html());
                         $("#res-tabData").html(tpl(data.results));
