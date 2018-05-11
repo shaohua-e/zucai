@@ -28,7 +28,7 @@
                     <ul class="menu-ul">
                         <li><a href="index.html">HOME <i class="fa fa-chevron-right"></i></a></li>
                         <li><a href="allGame.html">ALL GAMES <i class="fa fa-chevron-right"></i></a></li>
-                        <li><a href="order.html">FOLLOW ORDER <i class="fa fa-chevron-right"></i></a></li>
+                        <li><a href="javascript:;">FOLLOW ORDER <i class="fa fa-chevron-right"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -43,8 +43,8 @@
                     <a href="#menu" class="menu-link"><i class="fa fa-reorder"></i></a>
                 </div>
                 <div class="Profile-mid logo">
-                    <h1>
-                        <a class="link link--yaku pull-left" href="single.html">
+                    <h1 class="pl70 pull-left">
+                        <a class="link" href="javascript:;">
                             <img src="../public/images/logo.png"/>&nbsp;&nbsp;KENYA
                         </a>
                     </h1>
@@ -67,11 +67,21 @@
                 </div>
                 <ul class="oper-list">
                     <li class="fir-li">
-                        <p class="p">Balance</p>
-                        <strong class="orange">{{= it.userAccount}}</strong>
-                        <strong >{{= it.userMoneyReward}}</strong>
-                        <a href="recharge.html" class="bets-btn pull-right inline-btn">Recharge</a>
-                        <a href="withdrawal.html"  class="back-btn pull-right inline-btn">Withdraw</a>
+                        <div class="pull-left fir-left">
+                            <div class="pull-left">
+                                <p class="p">Balance</p>
+                                <strong class="orange">{{= it.userAccount}}</strong>
+                            </div>
+                            <div class="pull-right">
+                                <a href="recharge.html" class="bets-btn inline-btn mb15">Recharge</a><br/>
+                                <a href="withdrawal.html"  class="back-btn inline-btn">Withdraw</a>
+                            </div>
+
+                        </div>
+                        <div class="pull-right fir-right">
+                            <p class="p">Vice-Account</p>
+                            <strong class="orange">{{= it.userMoneyReward}}</strong>
+                        </div>
                         <div class="clearfix"></div>
                     </li>
                     <li><a href="notice.html" class="lh"><span class="pr">Notice

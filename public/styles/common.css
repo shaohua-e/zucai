@@ -42,17 +42,29 @@ em{font-style: normal;}
     display: inline-block;
     width: 30%;
 }
+.w80{
+    width: 80px!important;
+}
 .mb50{
     margin-bottom: 50px;
 }
+.mt50{
+    margin-top: 50px!important;
+}
 .pd15{
     padding-bottom: 15px;
+}
+.mb15{
+    margin-bottom: 15px!important;
 }
 .mt0{
     margin-top: 0!important;
 }
 .pt30{
     padding-top: 30px!important;
+}
+.pl70{
+    padding-left: 70px;
 }
 .orange{
     color: #FFD80D;
@@ -120,7 +132,6 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
     font-weight: normal;
   }
 .login-box .form-control,.transfer-search .form-control{
-    line-height: 45px;
     height: 45px;
     background-color: #49528C;
     border: 1px solid rgba(255, 255, 255, 0.12);
@@ -129,6 +140,7 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
     margin: 18px 0;
     font-weight: normal;
     text-align: left;
+    padding: 10px 12px;
   }
 .login-box .login-btn{
     display: block;
@@ -275,6 +287,7 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
     border-radius: 6px;
     font-weight: 600;
     border: none;
+    line-height: 28px;
 }
 .back-btn{
     height: 40px;
@@ -311,8 +324,9 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
     box-shadow: 0 1px 3px 0 rgba(47,56,121,0.50), inset 1px 0 1px 0 rgba(255,255,255,0.05), inset 0 1px 1px 0 rgba(255,255,255,0.23), inset 0 0px 3px 0 rgba(40,49,127,0.31);
 }
 .bets-amount li.dis{
-    background: #bbb;
-    color: #fff;
+    background-image: linear-gradient(0deg, #2F3972 100%, #54619A 100%);
+    box-shadow: inset 0 2px 1px 0 rgba(255,255,255,0.23);
+    color:  rgba(255,216,13,0.5);
 }
 .bets-amount li.able:hover{
     color: #3A3F7C;
@@ -351,7 +365,7 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
 /*下注框 结束*/
 .menu-link{
     display: inline-block;
-    margin-top: 3px;
+
 }
 .user-icon{
     display: inline-block;
@@ -384,9 +398,9 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
 /*}*/
 .logo h1 .link{
     font-size: 16px!important;
-    margin-top: 9px;
     font-weight: normal!important;
     color: #fff;
+    margin: 6px 0 3px;
 }
 .logo img{
     width: 20px;
@@ -455,6 +469,9 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
     font-size: 12px;
     text-align: center;
     font-weight: 400;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .remd-list td{
     color: #fff;
@@ -462,6 +479,7 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
     vertical-align: top;
     font-size: 12px;
     border-bottom: 1px solid rgba(255,255,255,0.2);
+    cursor: pointer;
 }
 .remd-list tr:last-child td,
 .remd-list td:first-child{
@@ -485,9 +503,17 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
 .remd-list td .ds{
     display: block;
     line-height: 18px;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #fff;
 }
 .remd-list td a{
     color: rgba(255,255,255,0.5);
+}
+.remd-list td a:hover{
+    text-decoration: none;
 }
 .remd-list td .block{
     padding: 0 3px;
@@ -505,8 +531,9 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
     color: rgba(255,255,255,0.51);
 }
 .remd-list tr .dis{
-    background: #ccc;
-    color: #fff;
+    background-image: linear-gradient(0deg, #2F3972 100%, #54619A 100%);
+    box-shadow: inset 0 2px 1px 0 rgba(255,255,255,0.23);
+    color:  rgba(255,216,13,0.5);
 }
     /* 首页 结束 */
 /* 赛事详情 开始 */
@@ -586,6 +613,7 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
 .remd-list .de-score{
     display: inline-block;
     padding: 0 4px;
+    width: 40px;
 }
 .score-td{
     line-height: 40px;
@@ -610,7 +638,7 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
     width: 100%;
     overflow: hidden;
     -ms-touch-action: none;
-    height: 33px;
+    height: 40px;
     background: #4663a9;
     z-index: 11;
 }
@@ -644,7 +672,7 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
     display: inline-block;
     float: left;
     padding: 0 12px;
-    line-height: 33px;
+    line-height: 40px;
     color: rgba(255,255,255,0.60);
     font-size: 13px;
 }
@@ -739,6 +767,22 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
     line-height: normal;
     padding: 10px 0;
 }
+.oper-list .fir-li .fir-left{
+    width: 60%;
+    background-color: rgba(255,255,255,0.06);
+    border-radius: 5px;
+    padding: 15px;
+}
+.oper-list .fir-li .fir-left > .pull-left{
+    padding-top: 16px;
+}
+.oper-list .fir-li .fir-right{
+    width: 37%;
+    background-color: rgba(255,255,255,0.06);
+    border-radius: 5px;
+    padding: 30px 15px 0;
+    min-height: 105px;
+}
 .oper-list .fa{
     margin-top: 22px;
 }
@@ -756,7 +800,6 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
     display: inline-block;
     width: 80px;
     font-weight: normal;
-    margin-left: 10px;
     height: 30px;
     line-height: 30px;
 }
@@ -880,7 +923,7 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
     width: 55px;
     font-weight: normal;
     height: 23px;
-    line-height: 23px;
+    line-height: 24px;
     font-size: 12px;
  }
 /* 个人中心 结束 */
@@ -995,6 +1038,7 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
     color: #fff;
     font-size: 12px;
     border-bottom: 1px solid rgba(255,255,255,0.2);
+    cursor: pointer;
 }
 .notice-de{
     color: #fff;
@@ -1010,8 +1054,53 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
     margin: 5px auto;
 }
 /* setting edit 结束 */
+.sign-btn{
+    cursor: pointer;
+}
 
+/*底部分享框*/
+.accordion{
+    display: none;
+    padding: 20px;
+    font-size: 15px;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    z-index: 1157;
+}
+.accordion p{
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+.accordion .cancel{
+    font-size: 15px;
+}
+.accordion .icon-btn{
+    max-width: 640px;
+    margin:0 auto;
+}
+.accordion .icon{
+    display: inline-block;
+    width: 50%;
+    float: left;
+    color: #464646;
+}
+.accordion .icon img{
+    display: block;
+    width: 40%;
+    margin: 5px auto;
+}
+
+.all-game{
+    background-color: #3f4989;
+    min-height: 900px;
+}
 @media screen and (max-width:321px){
+    .remd-list th,.remd-list td .ds{
+        max-width: 110px;
+    }
     .soccer-l,.soccer-r{
         color: #33D578;
         font-size: 56px;
@@ -1022,9 +1111,32 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
         float: left;
         margin: 17px 0px 0;
     }
+    .oper-list .fir-li .fir-left{
+        padding: 10px;
+    }
+    .oper-list .fir-li .fir-right{
+        padding: 25px 10px 0;
+        min-height: 90px;
+    }
+    .oper-list .mb15{
+        margin-bottom: 10px!important;
+    }
+    .oper-list strong{
+        font-size: 14px;
+    }
+    .oper-list .inline-btn{
+        font-size: 12px;
+        width: 60px;
+    }
+    .oper-list .p{
+        font-size: 12px;
+    }
 }
 
 @media screen and (min-width:321px) and (max-width:400px){
+    .remd-list th,.remd-list td .ds{
+        max-width: 120px;
+    }
     .soccer-l,.soccer-r{
         color: #33D578;
         font-size: 56px;
@@ -1035,9 +1147,19 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
         float: left;
         margin: 14px 0px 0;
     }
+    .oper-list strong{
+        font-size: 16px;
+    }
+    .oper-list .inline-btn{
+        font-size: 13px;
+        width: 70px;
+    }
 }
 
 @media screen and (min-width:400px){
+    .remd-list th,.remd-list td .ds{
+        max-width: 125px;
+    }
     .soccer-l,.soccer-r{
         color: #33D578;
         font-size: 60px;
@@ -1051,10 +1173,6 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
         margin: 15px 2px 0;
     }
 }
-
-
-
-
 
 
 

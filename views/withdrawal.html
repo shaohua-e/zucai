@@ -32,7 +32,7 @@
                 </div>
                 <div class="Profile-mid logo">
                     <h1>
-                        <span class="link link--yaku">Request Withdrawal</span>
+                        <span class="link link--yaku">Request Withdraw</span>
                     </h1>
                 </div>
                 <div class="clearfix"></div>
@@ -68,7 +68,7 @@
             $('input[name="userPhone"]').val($.cookie('userPhone'));
             $('#withdrawal').on('click', function(){
                 if($('input[name="money"]').val()==""){
-                    $.blt('请输入提现金额');
+                    $.blt('Please enter the withdraw amount');
                     return;
                 }
 
@@ -85,7 +85,7 @@
                     },
                     success: function (data) {
                         if (data.code == "0") {
-                            $.blt('提交成功');
+                            $.blt('SUCCESS');
                         } else {
                             //简单提示
                             $.blt(data.msg);

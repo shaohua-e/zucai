@@ -25,7 +25,7 @@
         <div class="phone-box wrap push">
             <div id="home" class="menu-notify">
                 <div class="profile-left">
-                    <a href="#menu" class="menu-link"><i class="fa fa-chevron-left"></i></a>
+                    <a href="javascript:history.go(-1);" class="menu-link"><i class="fa fa-chevron-left"></i></a>
                 </div>
                 <div class="Profile-mid logo">
                     <h1>
@@ -38,8 +38,8 @@
             <script type="text/template" charset="utf-8" id="tpl-detail">
                 <div class="notice-de">
                     <h5>{{= it.title}}</h5>
-                    <p class="p">{{= $.dateFmt(value.createTime, "yyyy-MM-dd hh:mm")}}</p>
-                    <p>{{= value.content}}</p>
+                    <p class="p">{{= $.dateFmt(it.createTime, "yyyy-MM-dd hh:mm")}}</p>
+                    <p>{{= it.content}}</p>
                 </div>
             </script>
         </div>
@@ -47,7 +47,6 @@
 
     <script type="text/javascript" src="../public/scripts/vendor/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="../public/scripts/vendor/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../public/scripts/vendor/jquery.cookie.js"></script>
     <script type="text/javascript" src="../public/scripts/vendor/doT.min.js"></script>
     <script type="text/javascript" src="../public/scripts/common.js"></script>
 

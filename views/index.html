@@ -30,7 +30,7 @@
                     <ul class="menu-ul">
                         <li><a href="index.html">HOME <i class="fa fa-chevron-right"></i></a></li>
                         <li><a href="allGame.html">ALL GAMES <i class="fa fa-chevron-right"></i></a></li>
-                        <li><a href="order.html">FOLLOW ORDER <i class="fa fa-chevron-right"></i></a></li>
+                        <li><a href="javascript:;">FOLLOW ORDER <i class="fa fa-chevron-right"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -42,8 +42,8 @@
                     <a href="#menu" class="menu-link"><i class="fa fa-reorder"></i></a>
                 </div>
                 <div class="Profile-mid logo">
-                    <h1>
-                        <a class="link pull-left" href="single.html">
+                    <h1 class="pl70 pull-left">
+                        <a class="link" href="javasctipt:;">
                             <img src="../public/images/logo.png"/>&nbsp;&nbsp;KENYA
                         </a>
                     </h1>
@@ -69,13 +69,13 @@
                 </div>
             </div>
             <!-- recommend -->
-            <div class="recommend" id="res-recommendList"></div>
+            <div class="recommend all-game" id="res-recommendList"></div>
                 <script type="text/template" charset="utf-8" id="tpl-recommendList">
                     {{? it.length}}
                     {{~ it :value:index}}
                     <table class="remd-list">
                         <tr>
-                            <th width="5">&nbsp;</th>
+                            <th width="5%">&nbsp;</th>
                             <th width="30%" class="left">{{= value.competitionName}}</th>
                             <th width="15%">Result</th>
                             <th width="17%">1</th>
@@ -85,11 +85,11 @@
                         {{~ value.events: key:ind}}
                             <tr data-eventId="{{= key.eventId}}"  data-homeTeamName="{{= key.homeTeamName}}" data-awayTeamName="{{= key.awayTeamName}}"   data-competitionName="{{= value.competitionName}}" >
                                 <td>&nbsp;</td>
-                                <td class="left d">
-                                    <span class="ds">{{= key.homeTeamName}}</span>
-                                    <span class="ds">{{= key.awayTeamName}}</span>
+                                <td class="left ds">
                                     <a href="race-detail.html?eventId={{= key.eventId}}">
-                                        <em>{{= $.dateFmt(key.eventTime, "hh:mm")}}</em> <span class="block">{{= key.marketCount}}</span> <i class="fa fa-chevron-right"></i>
+                                        <span class="ds">{{= key.homeTeamName}}</span>
+                                        <span class="ds">{{= key.awayTeamName}}</span>
+                                        <em>{{= $.dateFmt(key.eventTime/10000, "hh:mm")}}</em> <span class="block">{{= key.marketCount}}</span> <i class="fa fa-chevron-right"></i>
                                     </a>
                                 </td>
                                 <td class="d orange">
@@ -97,8 +97,8 @@
                                     <span class="ds">{{= key.awayTeamScore}}</span>
                                 </td>
                                 {{? key.market}}
-                                    {{~ key.market.selections :v:i}}
-                                        <td class="s orange bg able" data-marketId="{{= key.market.marketId}}" data-ruleType="{{= key.market.ruleType}}" data-verifyResult="{{= key.market.verifyResult}}" data-selectionId="{{= v.selectionId}}" data-maxStakeLimit="{{= v.maxStakeLimit}}" data-v1="{{= v.v1}}" data-v2="{{= v.v2}}" data-v3="{{= v.v3}}" data-backOdds="{{= v.backOdds}}">{{= v.backOdds}}</td>
+                                    {{~ key.market.selections:v:i}}
+                                    <td class="s orange bg able" data-marketId="{{= key.market.marketId}}" data-ruleType="{{= key.market.ruleType}}" data-verifyResult="{{= key.market.verifyResult}}" data-selectionId="{{= v.selectionId}}" data-maxStakeLimit="{{= v.maxStakeLimit}}" data-v1="{{= v.v1}}" data-v2="{{= v.v2}}" data-v3="{{= v.v3}}" data-backOdds="{{= v.backOdds}}">{{= v.backOdds}}</td>
                                     {{~}}
                                 {{??}}
                                     <td class="s orange bg dis">&nbsp;</td>
@@ -151,11 +151,11 @@
                 <div class="modal-body">
                     <input type="text" class="form-control" placeholder="Tel Number" name="userPhone">
                     <label>
-                        <input type="text" class="form-control width70" placeholder="Verification Code" name="">
-                        <a href="javascript:;" class="smsSend">SEND</a>
+                        <input type="text" class="form-control width70" placeholder="Verification Code" name="userCode">
+                        <a href="javascript:;" class="smsSend" id="smsSend">SEND</a>
                     </label>
                     <input type="password" class="form-control" placeholder="passWord" name="passWord">
-                    <p><span class="agress agreed"></span>Agree《xxxxxxxx》</p>
+                    <p><span class="agress"></span><a href="agreement.html" class="white">Agree《xxxxxxxx》</a></p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn login-btn" id="logup-btn">REGISTER</button>
@@ -173,11 +173,15 @@
                     <h4 class="modal-title center">Set the Password</h4>
                 </div>
                 <div class="modal-body">
-                    <input type="text" class="form-control" placeholder="Set My Password">
-                    <input type="password" class="form-control" placeholder="Repeat My Password">
+                    <input type="text" class="form-control" placeholder="Set My Password" name="userPhone2">
+                    <label>
+                        <input type="text" class="form-control width70" placeholder="Verification Code" name="userCode2">
+                        <a href="javascript:;" class="smsSend" id="re-smsSend">SEND</a>
+                    </label>
+                    <input type="password" class="form-control" placeholder="Repeat My Password" name="newPassWord">
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn login-btn">CONFIRM</button>
+                    <button type="button" class="btn login-btn reset-btn">CONFIRM</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal -->
@@ -197,6 +201,9 @@
             </div>
         </div>
     </div>
+
+    <!-- 底部分享框（Modal） -->
+
 
     <script type="text/javascript" src="../public/scripts/vendor/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="../public/scripts/vendor/bootstrap.min.js"></script>

@@ -48,22 +48,18 @@
                             <li>
                                 <p class="p">{{= $.dateFmt(value.createTime, "yyyy-MM-dd hh:mm")}}</p>
                                 <div class="order-li">
-                                    <h5>{{= value.homeTeam}}/{{= value.awayTeam}}</h5>
+                                    <h5>{{= value.selectionName}}</h5>
                                     <p class="order-p">
-                                        {{? value.ruleTypeId == "100"}}
-                                            3 Way
-                                        {{?? value.ruleTypeId == "130"}}
-                                            Odd/Even
-                                        {{?? value.ruleTypeId == "140"}}
-                                            Correct Score
-                                        {{?? value.ruleTypeId == "350"}}
-                                            Next Team To Score
-                                        {{?? value.ruleTypeId == "410"}}
-                                            Total Goals Exactly
-                                        {{?}}
-                                        <br/>{{= value.competitionName}}</p>
+                                        {{= value.ruleTypeName}}
+                                        <br/>{{= value.homeTeam}} / {{= value.awayTeam}}</p>
                                     <div>Betting<strong class="white">{{= value.orderMoney}}</strong>
-                                        <p class="pull-right">Gained<strong class="orange">{{= value.orderMoney * value.orderOdds}}</strong></p>
+                                        <p class="pull-right">Gained<strong class="orange">
+                                            {{? value.orderState == "2" && value.isWin == "0"}}
+                                                0
+                                            {{??}}
+                                                {{= value.orderMoney * value.orderOdds}}
+                                            {{?}}
+                                        </strong></p>
                                     </div>
                                 </div>
                             </li>

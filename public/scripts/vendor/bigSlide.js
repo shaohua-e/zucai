@@ -115,7 +115,8 @@
 
         // CSS for how the menu will be positioned off screen
         var positionOffScreen = {
-          'position': 'fixed',
+          // 'position': 'fixed',
+          'position': 'absolute',
           'top': '0',
           'bottom': '0',
           'height': '100%'

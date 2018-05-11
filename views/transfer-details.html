@@ -47,7 +47,7 @@
                         <div class="pull-right right">
                             <strong class="orange">{{= value.rechargeMoney}}</strong><br />
                             {{? value.rechargeState == "0"}}
-                                <span class="red">In Review</span>
+                                <span class="red">Failed</span>
                             {{?? value.rechargeState == "1"}}
                                 <span>Successful</span>
                             {{?}}
@@ -56,20 +56,22 @@
                     {{~}}
                     {{?}}
                 </script>
-                <script type="text/template" charset="utf-8" id="tpl-withdrew">
+                <script type="text/template" charset="utf-8" id="tpl-withdraw">
                     {{? it.length}}
                     {{~ it:value:index}}
                     <li class="re-li">
                         <div class="pull-left">
-                            <p class="t">Withdrew Detail </p>
+                            <p class="t">Withdraw Detail </p>
                             <p class="p">{{= $.dateFmt(value.createTime, "yyyy-MM-dd hh:mm")}}</p>
                         </div>
                         <div class="pull-right right">
                             <strong class="orange">{{= value.cashMoney}}</strong><br />
-                            {{? value.cashState == "0"}}
+                            {{? value.cashState == "1"}}
                             <span class="red">In Review</span>
-                            {{?? value.cashState == "1"}}
+                            {{?? value.cashState == "2"}}
                             <span>Successful</span>
+                            {{?? value.cashState == "3"}}
+                            <span>Failed</span>
                             {{?}}
                         </div>
                     </li>
@@ -108,9 +110,9 @@
                             $('.transfer-title').html('Recharge Details');
                         }else if(flag == "3"){
                             // 渲染提现
-                            var tpl = doT.template($("#tpl-withdrew").html());
+                            var tpl = doT.template($("#tpl-withdraw").html());
                             $("#res-transfer").html(tpl(data.results.cashInfoList));
-                            $('.transfer-title').html('Withdrew Details');
+                            $('.transfer-title').html('Withdraw Details');
                         }
 
                     } else {

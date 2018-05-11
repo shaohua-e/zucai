@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="format-detection" content="telephone=no,email=no"/>
+    <meta name="apple-mobile-web-app-title" content="足彩"/>
+    <title></title>
+    <!--font-awsome-css-->
+    <link rel="stylesheet" href="../public/styles/font-awesome.min.css">
+    <!--bootstrap-->
+    <link rel="stylesheet" href="../public/styles/bootstrap.min.css">
+    <!-- swiper -->
+    <link rel="stylesheet" href="../public/styles/swiper.min.css"/>
+    <!--custom css-->
+    <link rel="stylesheet" href="../public/styles/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" href="../public/styles/index.css" />
+    <link rel="stylesheet" href="../public/styles/common.css">
+
+
+</head>
+<body>
+    <div class="masthead pdng-stn1">
+        <!-- 内容开始 -->
+        <div class="phone-box wrap push">
+            <div id="home" class="menu-notify">
+                <div class="profile-left">
+                    <a href="javascript:history.go(-1);" class="menu-link"><i class="fa fa-chevron-left"></i></a>
+                </div>
+                <div class="Profile-mid logo">
+                    <h1><span class="link coun-title"></span></h1>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <!-- recommend -->
+            <div class="recommend" id="res-eventList"></div>
+            <script type="text/template" charset="utf-8" id="tpl-eventList">
+                {{? it.length}}
+                <table class="remd-list">
+                    <tr>
+                        <th width="5">&nbsp;</th>
+                        <th width="30%" class="left coun-title"></th>
+                        <th width="15%">Result</th>
+                        <th width="17%">1</th>
+                        <th width="16%">X</th>
+                        <th width="17%">2</th>
+                    </tr>
+                    {{~ it:value:index}}
+                    <tr data-eventId="{{= value.eventId}}"  data-homeTeamName="{{= value.homeTeamName}}" data-awayTeamName="{{= value.awayTeamName}}"   data-competitionName="{{= value.competitionName}}" >
+                        <td>&nbsp;</td>
+                        <td class="left d">
+                            <span class="ds">{{= value.homeTeamName}}</span>
+                            <span class="ds">{{= value.awayTeamName}}</span>
+                            <a href="race-detail.html?eventId={{= value.eventId}}">
+                                <em>{{= $.dateFmt(value.eventTime/10000, "hh:mm")}}</em> <span class="block">{{= value.marketCount}}</span> <i class="fa fa-chevron-right"></i>
+                            </a>
+                        </td>
+                        <td class="d orange">
+                            <span class="ds">{{= value.homeTeamScore}}</span>
+                            <span class="ds">{{= value.awayTeamScore}}</span>
+                        </td>
+                        {{? value.market}}
+                        {{~ value.market.selections :v:i}}
+                        <td class="s orange bg able" data-marketId="{{= value.market.marketId}}" data-ruleType="{{= value.market.ruleType}}" data-verifyResult="{{= value.market.verifyResult}}" data-selectionId="{{= v.selectionId}}" data-maxStakeLimit="{{= v.maxStakeLimit}}" data-v1="{{= v.v1}}" data-v2="{{= v.v2}}" data-v3="{{= v.v3}}" data-backOdds="{{= v.backOdds}}">{{= v.backOdds}}</td>
+                        {{~}}
+                        {{??}}
+                        <td class="s orange bg dis">&nbsp;</td>
+                        <td class="s orange bg dis">&nbsp;</td>
+                        <td class="s orange bg dis">&nbsp;</td>
+                        {{?}}
+                    </tr>
+                    {{~}}
+                </table>
+                {{?}}
+            </script>
+
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src="../public/scripts/vendor/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="../public/scripts/vendor/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../public/scripts/vendor/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../public/scripts/vendor/doT.min.js"></script>
+    <script type="text/javascript" src="../public/scripts/common.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var countryId = $.getQueryString('country_id');
+
+            $.ajax({
+                type: 'get',
+                url: apiDomain + '/order/getEventList?' + new Date().getTime(),
+                dataType: "json",
+                cache: false,
+                data: {countryId: countryId},
+                success: function (data) {
+                    console.log(data);
+                    if (data.code == "0") {
+                        //渲染模版
+                        var tpl = doT.template($("#tpl-eventList").html());
+                        $("#res-eventList").html(tpl(data.results));
+
+                        $('.coun-title').html($.getQueryString('country_name'));
+                    } else {
+                        //简单提示框
+                        $.blt(data.msg);
+                    }
+                }
+            })
+
+        })
+    </script>
+</body>
+</html>

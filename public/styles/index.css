@@ -82,24 +82,46 @@ text-decoration:underline;
 	position:relative;
 }
 
+/*.Profile-mid {*/
+    /*float: left;*/
+    /*width: 60%;*/
+    /*text-align: center;*/
+/*}*/
+/*.profile-left {*/
+    /*float: left;*/
+    /*width: 60px;*/
+    /*text-align: center;*/
+    /*margin-top: 10px;*/
+/*}*/
+
+/*.Profile-right {*/
+    /*float: right;*/
+    /*width: 60px;*/
+    /*text-align: center;*/
+    /*margin-top: 10px;*/
+/*}*/
 .Profile-mid {
-    float: left;
-    width: 33.333%;
+    width: 100%;
     text-align: center;
 }
 .profile-left {
-    float: left;
-    width: 33.3333%;
+    position: absolute;
+    width: 60px;
     text-align: center;
-    margin-top: 10px;
+    left: 0;
+    top: 50%;
+    margin-top: -9px;
 }
 
 .Profile-right {
-    float: right;
-    width: 33.3333%;
+    position: absolute;
+    width: 60px;
     text-align: center;
-    margin-top: 10px;
+    right: 0;
+    top: 50%;
+    margin-top: -12px;
 }
+
 .Profile-right i{
     font-size: 21px;
     color: #fff;
@@ -183,7 +205,7 @@ text-decoration:underline;
 	right:0;
 }
 .menu-notify {
-    padding: 6px 0;
+    padding: 10px 0;
 }
 
 .panel {
@@ -1207,13 +1229,7 @@ select option{
 		font-size: 25px;
 	}
 	.menu-notify2,.menu-notify1,.menu-notify {
-		padding: 6px 0;
-	}
-	.Profile-right {
-		margin-top: 3px;
-	}
-	.profile-left {
-		margin-top: 4px;
+		padding: 10px 0;
 	}
 	.appoint.reg {
 		width: 73%;
@@ -1316,7 +1332,7 @@ select option{
 }
 @media (max-width: 568px){
 	.Profile-mid.logo h1 {
-		line-height: .4;
+		/*line-height: .4;*/
 	}
 	.bef-aft {
 		min-height: 366px;
@@ -1367,12 +1383,12 @@ select option{
 	.about_opa {
 		padding: 38px 10px 0;
 	}
-	.Profile-mid {
-		width: 41.333%;
-	}
-	.profile-left,.Profile-right {
-		width: 29.3333%;
-	}
+	/*.Profile-mid {*/
+		/*width: 41.333%;*/
+	/*}*/
+	/*.profile-left,.Profile-right {*/
+		/*width: 29.3333%;*/
+	/*}*/
 	.appoint.reg {
 		width: 87%;
 	}
@@ -1451,12 +1467,12 @@ select option{
 	.people-left {
 		width: 43%;
 	}
-	.Profile-mid {
-		width: 45.333%;
-	}
-	.profile-left, .Profile-right {
-		width: 27.3333%;
-	}
+	/*.Profile-mid {*/
+		/*width: 45.333%;*/
+	/*}*/
+	/*.profile-left, .Profile-right {*/
+		/*width: 27.3333%;*/
+	/*}*/
 	.appoint.reg {
 		margin: 30px auto 0;
 	}
@@ -1493,12 +1509,12 @@ select option{
 	.treat-left:nth-child(3), .treat-left:nth-child(4),.treat-left:nth-child(2) {
 		margin-top: 19px;
 	}	
-	.profile-left, .Profile-right {
-		width: 18.3333%;
-	}
-	.Profile-mid {
-		width: 63.333%;
-	}
+	/*.profile-left, .Profile-right {*/
+		/*width: 18.3333%;*/
+	/*}*/
+	/*.Profile-mid {*/
+		/*width: 63.333%;*/
+	/*}*/
 	.reg ul li.text-info {
 		width: 35% !important;
 	}
